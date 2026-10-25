@@ -39,20 +39,24 @@ Klient: Kristýna, Tlapkám z.s. Realizace: Nadine Sokolová.
 | 2 | Máme hotovo! Odevzdání Tlapkové výzvy | `q55ZEG` | https://tally.so/r/q55ZEG |
 | 3 | Registrace útulku | `KppQB8` | https://tally.so/r/KppQB8 |
 
-Formulář #2 má upload 1 až 6 souborů (fotky, PDF, ZIP, max 10 MB/soubor), dva souhlasy (fotky dětí + GDPR) a **výběr útulku řešený na webu** (viz níže). Útulek přichází do formuláře jako skrytá pole `utulek` a `utulek_kraj`; při hodnotě `jiny` (nebo prázdné) se rozbalí pole pro ruční zadání útulku.
+Formulář #2 má upload 1 až 6 souborů (fotky, PDF, ZIP, max 10 MB/soubor) a dva souhlasy (fotky dětí + GDPR). **Útulek se ve výzvě nevybírá** (upřesnění klienta 25. 10.: příjemce pomoci z výzvy vybírá Tlapkám z.s. interně). Útulek si škola volí jen ve formuláři #1 (sbírka), kde ho zadává textem.
 
-### Seznam útulků: automaticky z registrací, bez ručního přepisování
+### Seznam útulků z registrací (připraveno, zatím nepoužito)
 
-Tally dropdown se neumí sám plnit, proto výběr útulku dělá stránka `formular-vyzva.html` (`assets/utulky.js`). Tok:
+Pokud by klient chtěl, aby si školy ve formuláři #1 vybíraly útulek ze seznamu schválených útulků (místo ručního zadání), je to hotové v `assets/utulky.js` + `assets/utulky.json` a stačí to zapnout na `formular-sbirka.html`. Tally dropdown se neumí sám plnit, proto výběr dělá stránka webu a do Tally jde jako skryté pole. Tok:
 
 1. Útulek se zaregistruje formulářem #3 → Tally ho zapíše do Google tabulky, list **ÚTULKY**.
 2. V listu ÚTULKY je sloupec **Schváleno** (zaškrtávací políčko). Kristýna ho u ověřeného útulku zaškrtne. To je jediný ruční krok a zadání ho chce („schválené útulky").
 3. Druhý list **verejny_seznam** obsahuje jen název a kraj schválených útulků, vzorec v buňce A1:
    `=FILTER({ÚTULKY!B:B; ÚTULKY!F:F}; ÚTULKY!M:M=TRUE)` (písmena sloupců upravit podle skutečné tabulky: název, kraj, Schváleno).
 4. Soubor → Sdílet → **Publikovat na web** → vybrat list `verejny_seznam` → formát **CSV** → zkopírovat URL.
-5. URL vložit do `assets/utulky.js` do `UTULKY_CSV_URL`. Hotovo: web načítá seznam živě při každém otevření stránky. Veřejně je vidět jen název a kraj, kontakty a kapacity zůstávají v soukromé tabulce.
+5. URL vložit do `assets/utulky.js` do `UTULKY_CSV_URL` a skript připojit na stránku s formulářem #1. Web pak načítá seznam živě při každém otevření stránky. Veřejně je vidět jen název a kraj, kontakty a kapacity zůstávají v soukromé tabulce.
 
-Dokud URL není vyplněná, načítá se záložní `assets/utulky.json` s ukázkovými daty.
+## Obsah od klienta (stav 25. 10. večer)
+
+Dodáno a zapracováno: texty O nás (příběh zakladatelky), Pro školy (Možnost A / B s postupem), Pro útulky (výhody zapojení). Změny: všude „škola" místo „třída", čichací kobereček zrušen (i jako soubor ke stažení), výzva bez výběru útulku.
+
+Stále chybí: soubory ke stažení (5 položek), kontaktní údaje (e-mail, telefon, IČO, sídlo), logo ve vektoru, loga partnerů, doména, Google účet spolku, GDPR text.
 
 ### Co je potřeba kliknout ručně v Tally (nejde přes API)
 
