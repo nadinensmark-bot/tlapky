@@ -39,14 +39,26 @@ Klient: Kristýna, Tlapkám z.s. Realizace: Nadine Sokolová.
 | 2 | Máme hotovo! Odevzdání Tlapkové výzvy | `q55ZEG` | https://tally.so/r/q55ZEG |
 | 3 | Registrace útulku | `KppQB8` | https://tally.so/r/KppQB8 |
 
-Formulář #2 má podmíněná pole (volba „Jiný / vlastní lokální útulek" rozbalí název, adresu, kontakt), upload 1 až 6 souborů (fotky, PDF, ZIP, max 10 MB/soubor) a dva souhlasy (fotky dětí + GDPR). Seznam útulků v dropdownu je zatím **ukázkový**, nahradí se skutečným seznamem od klienta.
+Formulář #2 má upload 1 až 6 souborů (fotky, PDF, ZIP, max 10 MB/soubor), dva souhlasy (fotky dětí + GDPR) a **výběr útulku řešený na webu** (viz níže). Útulek přichází do formuláře jako skrytá pole `utulek` a `utulek_kraj`; při hodnotě `jiny` (nebo prázdné) se rozbalí pole pro ruční zadání útulku.
+
+### Seznam útulků: automaticky z registrací, bez ručního přepisování
+
+Tally dropdown se neumí sám plnit, proto výběr útulku dělá stránka `formular-vyzva.html` (`assets/utulky.js`). Tok:
+
+1. Útulek se zaregistruje formulářem #3 → Tally ho zapíše do Google tabulky, list **ÚTULKY**.
+2. V listu ÚTULKY je sloupec **Schváleno** (zaškrtávací políčko). Kristýna ho u ověřeného útulku zaškrtne. To je jediný ruční krok a zadání ho chce („schválené útulky").
+3. Druhý list **verejny_seznam** obsahuje jen název a kraj schválených útulků, vzorec v buňce A1:
+   `=FILTER({ÚTULKY!B:B; ÚTULKY!F:F}; ÚTULKY!M:M=TRUE)` (písmena sloupců upravit podle skutečné tabulky: název, kraj, Schváleno).
+4. Soubor → Sdílet → **Publikovat na web** → vybrat list `verejny_seznam` → formát **CSV** → zkopírovat URL.
+5. URL vložit do `assets/utulky.js` do `UTULKY_CSV_URL`. Hotovo: web načítá seznam živě při každém otevření stránky. Veřejně je vidět jen název a kraj, kontakty a kapacity zůstávají v soukromé tabulce.
+
+Dokud URL není vyplněná, načítá se záložní `assets/utulky.json` s ukázkovými daty.
 
 ### Co je potřeba kliknout ručně v Tally (nejde přes API)
 
 1. **Integrations → Google Sheets** u každého ze tří formulářů: propojit s tabulkou na Google účtu Tlapkám z.s. (ne na soukromém účtu). Formuláře #1 a #2 do listu ŠKOLY, #3 do listu ÚTULKY.
 2. **Settings → Notifications**: e-mail, kam chodí upozornění na nové odpovědi (adresu dodá klient).
-3. Až klient dodá seznam útulků: přepsat položky dropdownu ve formuláři #2 (zatím 3 ukázkové).
-4. Formuláře leží ve workspace Nadine. Před ostrým provozem převést / nasdílet do účtu klienta, aby data vlastnil Tlapkám z.s.
+3. Formuláře leží ve workspace Nadine. Před ostrým provozem převést / nasdílet do účtu klienta, aby data vlastnil Tlapkám z.s.
 
 ## Jak doplnit soubory ke stažení
 

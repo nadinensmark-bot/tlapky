@@ -33,12 +33,21 @@
     <p>Splnili jste úkoly? Vyplňte údaje, vyberte útulek a nahrajte až 6 fotek (nebo 1 PDF / ZIP). Vše v jednom kroku.</p>
   </div>
 </section>
-<section class="tight"><div class="wrap"><div class="form-wrap">
-  <iframe data-tally-src="https://tally.so/embed/q55ZEG?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="1900" frameborder="0" marginheight="0" marginwidth="0" title="Odevzdání Vánoční tlapkové výzvy"></iframe>
-</div>
+<section class="tight">
+  <div class="wrap">
+    <div class="pick">
+      <span class="eyebrow">Krok 1 ze 2</span>
+      <h2>Který útulek jste podpořili?</h2>
+      <p class="muted">Nabídka obsahuje útulky, které jsou u nás registrované a schválené, řazené podle krajů. Pokud váš útulek v seznamu není, zvolte poslední položku a doplníte ho ručně.</p>
+      <select id="utulekSelect" disabled><option>Načítám seznam útulků…</option></select>
+      <div id="utulekStatus" class="muted" style="font-size:.8rem;margin-top:8px"></div>
+    </div>
+    <div id="tallyWrap" hidden></div>
+    <p class="muted" style="font-size:.8rem;margin-top:10px">Pokud se formulář nezobrazí, otevřete ho přímo: <a href="https://tally.so/r/q55ZEG">tally.so/r/q55ZEG</a> (útulek pak vyplníte ručně).</p>
+  </div>
+</section>
 <script src="https://tally.so/widgets/embed.js" async></script>
-<p class="muted" style="font-size:.8rem;margin-top:10px">Pokud se formulář nezobrazí, otevřete ho přímo: <a href="https://tally.so/r/q55ZEG">tally.so/r/q55ZEG</a></p>
-</div></section>
+<script src="assets/utulky.js"></script>
 </main>
 <footer>
   <div class="fin">
