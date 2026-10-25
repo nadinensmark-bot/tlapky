@@ -1,39 +1,62 @@
-# TLAPKÁM / Školy Tlapkám: web
+# Školy Tlapkám: web
 
-Web pro projekt **TLAPKÁM** (Tlapkám z.s.): udržitelná pomoc zvířatům v nouzi, propojení škol, veřejnosti, B2B partnerů a útulků.
+Web pro projekt **Školy Tlapkám** (Tlapkám z.s.): propojení škol a útulků, Vánoční sbírka a Vánoční tlapková výzva.
 
-Stav: **prototyp Fáze 1** (statický frontend bez backendu). Klient: Kristýna, Tlapkám z.s. Realizace: Nadine Sokolová.
+Stav: **pracovní verze podle zadání v2 (25. 10. 2026)**. Struktura, design a všechny tři formuláře fungují. Chybí obsah od klienta (soubory ke stažení, seznam útulků, texty, kontakty, vektorové logo), viz `docs/co-chybi-od-klienta.md`.
 
-## Co tu je
+Klient: Kristýna, Tlapkám z.s. Realizace: Nadine Sokolová.
 
-| Cesta | Obsah |
+## Stack (rozpočet 0)
+
+| Vrstva | Řešení | Poznámka |
+|---|---|---|
+| Web | Statické HTML + CSS, bez buildu | Hosting GitHub Pages / Vercel / Cloudflare Pages zdarma |
+| Formuláře | [Tally](https://tally.so) (free), vložené do stránek | Upload souborů do 10 MB, podmíněná pole, GDPR, EU |
+| Databáze | Google Sheets (nebo Airtable) napojené na Tally | Dvě tabulky: ŠKOLY a ÚTULKY; export do CSV/Excel nativně |
+| Fotky z formuláře #2 | Uložené v Tally u odpovědi, odkaz se propíše do Sheets | Případně Google Drive přes integraci |
+| Admin | Žádný vlastní | Google Sheets / Airtable dělá přesně to, co mockup „Databáze škol / útulků" |
+
+## Struktura webu
+
+| Stránka | Obsah |
 |---|---|
-| `index.html` | Klikací prototyp podle zadání v1 (homepage, modul Školy s mapou a formulářem, PET Box, Merch, galerie, kontakt). Čistý HTML/CSS/JS, žádné závislosti kromě Google Fonts. |
-| `assets/` | Brand assety od klienta (hlavní logo, loga modulů, render PET Boxu). Pouze rastry, vektor zatím nedodán. |
-| `docs/zadani-v1-tlapkam.md` | Původní zadání (celý web TLAPKÁM: mapa, automatizace, PET Box, Merch). |
-| `docs/zadani-v2-skoly-tlapkam.md` | Nové zadání z 25. 10. 2026 (pouze Školy Tlapkám: download centrum, 3 formuláře, soukromá databáze). **Aktuálně platné.** |
-| `docs/zadani-v2-email-kristyna.txt` | Původní e-mail od klientky (zdroj zadání v2). |
-| `docs/co-chybi-od-klienta.md` | Checklist podkladů, které musí dodat klient, otevřené otázky a doporučený stack. |
-| `docs/mockupy/` | Vizuály od klienta (v1 i v2). |
+| `index.html` | O projektu: hero, 3 karty (Pro školy / Pro útulky / Ke stažení), Jak to funguje, dvě aktivity, partneři |
+| `pro-skoly.html` | Vánoční sbírka a Tlapková výzva pro školy, odkazy na formuláře a podklady |
+| `pro-utulky.html` | Registrace útulku (vložený formulář #3) |
+| `ke-stazeni.html` | Download centrum: 2 sekce × 3 soubory (zatím bez souborů, viz níže) |
+| `formular-sbirka.html` | Formulář #1: Přihlášení do Vánoční sbírky |
+| `formular-vyzva.html` | Formulář #2: Máme hotovo! (výběr útulku, upload fotek) |
+| `kontakt.html` | O nás & Kontakt (kontaktní údaje doplní klient) |
+| `assets/style.css` | Společný design systém (navy + krémová, Poppins + Inter) |
+| `assets/` | Brand assety od klienta (loga, render PET Boxu) |
+| `docs/` | Zadání v1 a v2, checklist podkladů, mockupy, archiv prototypu v1 |
 
-## Důležité: zadání se změnilo
+## Formuláře (Tally)
 
-Zadání v2 (25. 10.) je **užší a technicky jednodušší** než v1: žádná automatická mapa, žádné automatické maily s PDF, žádný našeptávač adres, žádný PET Box ani Merch. Místo toho: volně stažitelné podklady, 3 formuláře (přihláška do sbírky, odevzdání výzvy s nahráním fotek, registrace útulku) a soukromá databáze v Google Sheets / Airtable.
+| # | Formulář | ID | Odkaz |
+|---|---|---|---|
+| 1 | Přihlášení do Vánoční sbírky | `rDDydN` | https://tally.so/r/rDDydN |
+| 2 | Máme hotovo! Odevzdání Tlapkové výzvy | `q55ZEG` | https://tally.so/r/q55ZEG |
+| 3 | Registrace útulku | `KppQB8` | https://tally.so/r/KppQB8 |
 
-Prototyp v `index.html` odpovídá v1 a bude potřeba ho přestavět podle v2. Zatím slouží jako vizuální reference (barvy, typografie, layout).
+Formulář #2 má podmíněná pole (volba „Jiný / vlastní lokální útulek" rozbalí název, adresu, kontakt), upload 1 až 6 souborů (fotky, PDF, ZIP, max 10 MB/soubor) a dva souhlasy (fotky dětí + GDPR). Seznam útulků v dropdownu je zatím **ukázkový**, nahradí se skutečným seznamem od klienta.
 
-## Doporučený stack (rozpočet 0)
+### Co je potřeba kliknout ručně v Tally (nejde přes API)
 
-- **Web:** statický (HTML/CSS/JS nebo Astro), hosting Vercel / Cloudflare Pages / GitHub Pages zdarma.
-- **Formuláře:** formulářový nástroj s nahráváním souborů, podmíněnou logikou a nativním napojením na Google Sheets (např. Tally, free tier). Embed do webu. Žádný vlastní backend.
-- **Databáze:** Google Sheets (nebo Airtable) na účtu Tlapkám z.s., dvě záložky: ŠKOLY a ÚTULKY. Export do CSV je nativní.
-- **Fotky z formuláře #2:** Google Drive (přes formulářový nástroj) nebo přílohy v Airtable.
-- **Admin:** žádný custom admin. Mockup „Databáze škol / útulků" je přesně to, co dává Airtable / Sheets zadarmo.
+1. **Integrations → Google Sheets** u každého ze tří formulářů: propojit s tabulkou na Google účtu Tlapkám z.s. (ne na soukromém účtu). Formuláře #1 a #2 do listu ŠKOLY, #3 do listu ÚTULKY.
+2. **Settings → Notifications**: e-mail, kam chodí upozornění na nové odpovědi (adresu dodá klient).
+3. Až klient dodá seznam útulků: přepsat položky dropdownu ve formuláři #2 (zatím 3 ukázkové).
+4. Formuláře leží ve workspace Nadine. Před ostrým provozem převést / nasdílet do účtu klienta, aby data vlastnil Tlapkám z.s.
 
-## Lokální spuštění
+## Jak doplnit soubory ke stažení
 
-Otevřít `index.html` v prohlížeči. Nic se nebuildí.
+1. Nahrát PDF/Word do `assets/downloads/` (složku vytvořit).
+2. V `ke-stazeni.html` u příslušné položky nahradit `<div class="dl pending">…<span class="btn sm">Soubor doplníme</span>` za `<div class="dl">…<a class="btn sm" href="assets/downloads/nazev.pdf" download>Stáhnout</a>`.
 
 ## Nasazení
 
-Zatím nenasazeno. Plán: připojit repo na Vercel (nebo zapnout GitHub Pages), později přesměrovat doménu klienta.
+GitHub Pages: Settings → Pages → Source „Deploy from a branch", branch `main`, folder `/ (root)`. Web poběží na `https://nadinensmark-bot.github.io/tlapky/`. Vlastní doména klienta se přidá tamtéž (Custom domain) + CNAME v DNS.
+
+## Lokálně
+
+Otevřít `index.html` v prohlížeči. Vložené formuláře potřebují internet.

@@ -3,857 +3,125 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="TLAPKÁM: propojujeme školy, veřejnost a útulky. Udržitelná pomoc zvířatům v nouzi.">
+<title>Školy Tlapkám</title>
+<meta name="description" content="Školy Tlapkám propojují školy a útulky. Vánoční sbírka a Vánoční tlapková výzva pro třídy po celé České republice.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap">
-<title>TLAPKÁM</title>
-<style>
-  /* Layout: fixed top nav + sekce přepínané JS (SPA). Hero split, moduly v gridu,
-     stránka Školy = formulář vlevo / mapa vpravo (dle mockupu). */
-  :root{
-    --navy:#1D3A5C; --navy-deep:#152E4A; --navy-soft:#2C4E74;
-    --cream:#FAF5EA; --panel:#FFFDF9; --panel-2:#F1EAD8;
-    --yellow:#F0DFA6; --yellow-soft:#FBF4DA;
-    --ink:#2B3744; --muted:#79838F; --line:#ECE3CF;
-    --school:#2C6E8F; --shelter:#C77F3A;
-    --radius:18px; --radius-sm:12px; --maxw:1160px;
-    --shadow:0 18px 40px -24px rgba(21,46,74,.45);
-    --f-display:'Poppins',system-ui,sans-serif;
-    --f-body:'Inter',system-ui,sans-serif;
-    color-scheme:light;
-  }
-  /* Značka je záměrně jen světlá (krémová) ve všech režimech, dle vizuálů TLAPKÁM. */
-
-  *{box-sizing:border-box}
-  body{background:var(--cream);color:var(--ink);font-family:var(--f-body);
-    line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-  h1,h2,h3,h4{font-family:var(--f-display);color:var(--navy);line-height:1.1;
-    text-wrap:balance;margin:0;letter-spacing:-.01em}
-  p{margin:0}
-  a{color:inherit}
-  img{max-width:100%}
-  .eyebrow{font-family:var(--f-display);font-weight:600;font-size:.74rem;
-    letter-spacing:.18em;text-transform:uppercase;color:var(--navy-soft)}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding-inline:20px}
-
-  /* ---------- NAV ---------- */
-  header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;
-    background:color-mix(in srgb,var(--cream) 88%,transparent);
-    backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-  .nav-in{max-width:var(--maxw);margin:0 auto;padding:14px 20px;
-    display:flex;align-items:center;gap:22px}
-  .brand{display:flex;align-items:center;gap:10px;background:none;border:0;
-    cursor:pointer;padding:0;font-family:var(--f-display);font-weight:800;
-    font-size:1.3rem;color:var(--navy);letter-spacing:.02em}
-  .brand svg{width:34px;height:34px;flex:none}
-  nav.menu{margin-left:auto;display:flex;align-items:center;gap:4px;flex-wrap:wrap}
-  .menu button{background:none;border:0;cursor:pointer;font-family:var(--f-body);
-    font-size:.92rem;color:var(--ink);padding:8px 12px;border-radius:8px;
-    font-weight:500}
-  .menu button:hover{background:var(--panel-2)}
-  .menu button.active{color:var(--navy);font-weight:600}
-  .menu button.active::after{content:"";display:block;height:2px;border-radius:2px;
-    background:var(--navy);margin-top:3px}
-  .soon{font-size:.6rem;letter-spacing:.08em;background:var(--yellow);
-    color:var(--navy-deep);border-radius:6px;padding:1px 5px;margin-left:5px;
-    font-weight:700;vertical-align:middle;font-family:var(--f-display)}
-  .btn{display:inline-flex;align-items:center;gap:8px;cursor:pointer;
-    font-family:var(--f-display);font-weight:600;font-size:.92rem;
-    border-radius:999px;border:1.5px solid var(--navy);padding:11px 20px;
-    background:var(--navy);color:var(--cream);transition:transform .12s,background .15s}
-  .btn:hover{background:var(--navy-deep);transform:translateY(-1px)}
-  .btn.ghost{background:transparent;color:var(--navy)}
-  .btn.ghost:hover{background:var(--panel-2)}
-  .btn.sm{padding:8px 16px;font-size:.85rem}
-  .btn svg{width:16px;height:16px}
-  .nav-cta{margin-left:4px}
-  .burger{display:none;margin-left:auto;background:none;border:1.5px solid var(--line);
-    border-radius:10px;width:42px;height:42px;cursor:pointer;color:var(--navy)}
-
-  /* ---------- SECTIONS ---------- */
-  main{display:block}
-  section.page{display:none;padding-block:54px}
-  section.page.show{display:block;animation:fade .4s ease}
-  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-
-  /* ---------- HERO ---------- */
-  .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
-  .hero h1{font-size:clamp(2.3rem,5.4vw,3.9rem);font-weight:700;margin:14px 0 0}
-  .hero p.lead{font-size:1.12rem;color:var(--ink);max-width:46ch;margin-top:18px}
-  .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
-  .hero-art{position:relative;background:var(--panel);border-radius:28px;
-    padding:30px;box-shadow:var(--shadow);overflow:hidden;min-height:320px;
-    display:flex;align-items:center;justify-content:center}
-  .hero-art .pawbg{position:absolute;inset:0;opacity:.5;color:var(--panel-2)}
-  .hero-art .hero-logo{position:relative;width:min(100%,440px);height:auto;mix-blend-mode:multiply}
-
-  /* ---------- MODULE CARDS ---------- */
-  .mods{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:46px}
-  .mod{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
-    padding:26px;display:flex;flex-direction:column;gap:12px;position:relative;
-    cursor:pointer;transition:transform .14s,box-shadow .14s}
-  .mod:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
-  .mod .ico{width:52px;height:52px;color:var(--navy)}
-  .mod h3{font-size:1.28rem;font-weight:700}
-  .mod p{color:var(--muted);font-size:.95rem}
-  .mod .go{margin-top:auto;width:38px;height:38px;border-radius:999px;
-    background:var(--navy);color:var(--cream);display:grid;place-items:center}
-  .mod .go svg{width:17px;height:17px}
-  .mod.locked .tag{position:absolute;top:16px;right:16px;background:var(--yellow);
-    color:var(--navy-deep);font-family:var(--f-display);font-weight:700;
-    font-size:.64rem;letter-spacing:.09em;padding:4px 9px;border-radius:7px}
-
-  /* ---------- HOW IT WORKS ---------- */
-  .how{margin-top:64px;background:var(--navy);border-radius:28px;padding:42px 34px;color:var(--cream)}
-  .how h2{color:var(--cream);font-size:1.7rem}
-  .how .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:26px}
-  .how .step{display:flex;flex-direction:column;gap:8px}
-  .how .num{font-family:var(--f-display);font-weight:700;font-size:.8rem;
-    letter-spacing:.1em;color:var(--yellow)}
-  .how .step h4{color:var(--cream);font-size:1.12rem}
-  .how .step p{color:#C9D6E2;font-size:.92rem}
-  .how .arrow{color:var(--yellow)}
-
-  /* ---------- SECTION HEAD ---------- */
-  .sec-head{max-width:60ch}
-  .sec-head h2{font-size:clamp(1.9rem,4vw,2.7rem);font-weight:700;margin-top:10px}
-  .sec-head p{color:var(--muted);margin-top:12px;font-size:1.05rem}
-
-  /* ---------- ŠKOLY: split ---------- */
-  .skoly-grid{display:grid;grid-template-columns:420px 1fr;gap:26px;margin-top:34px;align-items:start}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
-    box-shadow:var(--shadow)}
-  .form-card{padding:26px}
-  .form-head{display:flex;align-items:center;gap:12px;margin-bottom:6px}
-  .form-head .ico{width:40px;height:40px;color:var(--navy);flex:none}
-  .form-head h3{font-size:1.35rem;font-weight:700}
-  .form-head+p{color:var(--muted);font-size:.92rem}
-  .stepper{display:flex;align-items:center;gap:6px;margin:20px 0 22px}
-  .stepper .s{display:flex;align-items:center;gap:8px}
-  .stepper .dot{width:30px;height:30px;border-radius:999px;display:grid;place-items:center;
-    background:var(--panel-2);color:var(--muted);font-family:var(--f-display);
-    font-weight:700;font-size:.85rem;flex:none}
-  .stepper .s.on .dot{background:var(--navy);color:var(--cream)}
-  .stepper .s span{font-size:.78rem;color:var(--muted);white-space:nowrap}
-  .stepper .s.on span{color:var(--navy);font-weight:600}
-  .stepper .bar{flex:1;height:2px;background:var(--line);min-width:10px}
-  .field{margin-bottom:16px}
-  .field label{display:block;font-family:var(--f-display);font-weight:600;
-    font-size:.82rem;color:var(--navy);margin-bottom:7px}
-  .field input,.field select{width:100%;padding:12px 13px;border:1.5px solid var(--line);
-    border-radius:var(--radius-sm);background:var(--cream);color:var(--ink);
-    font-family:var(--f-body);font-size:.95rem}
-  .field input:focus,.field select:focus{outline:2px solid var(--navy-soft);border-color:var(--navy-soft)}
-  .chips{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-  .chip{border:1.5px solid var(--line);border-radius:var(--radius-sm);background:var(--cream);
-    padding:12px 8px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;
-    font-family:var(--f-body);font-size:.8rem;color:var(--ink);text-align:center}
-  .chip svg{width:22px;height:22px;color:var(--navy)}
-  .chip.sel{background:var(--navy);color:var(--cream);border-color:var(--navy)}
-  .chip.sel svg{color:var(--cream)}
-  .ac{position:relative}
-  .ac-list{position:absolute;left:0;right:0;top:calc(100% + 4px);z-index:5;background:var(--panel);
-    border:1.5px solid var(--line);border-radius:var(--radius-sm);box-shadow:var(--shadow);
-    overflow:hidden;max-height:230px;overflow-y:auto}
-  .ac-list button{display:block;width:100%;text-align:left;background:none;border:0;cursor:pointer;
-    padding:10px 13px;font-family:var(--f-body);font-size:.9rem;color:var(--ink);border-bottom:1px solid var(--line)}
-  .ac-list button:last-child{border-bottom:0}
-  .ac-list button:hover{background:var(--panel-2)}
-  .ac-list button small{display:block;color:var(--muted);font-size:.75rem}
-  .picked{margin-top:10px;background:var(--yellow-soft);border:1px dashed var(--yellow);
-    border-radius:var(--radius-sm);padding:11px 13px;font-size:.84rem;color:var(--ink)}
-  .picked b{color:var(--navy);font-family:var(--f-display)}
-  .picked .gps{color:var(--muted);font-size:.76rem;margin-top:3px}
-  .form-actions{display:flex;gap:10px;margin-top:8px}
-  .form-actions .btn{flex:1;justify-content:center}
-  .consent{display:flex;gap:9px;align-items:flex-start;font-size:.8rem;color:var(--muted);margin:4px 0 16px}
-  .consent input{margin-top:3px}
-  .success{text-align:center;padding:10px 4px}
-  .success .check{width:64px;height:64px;margin:0 auto 14px;border-radius:999px;background:var(--navy);
-    color:var(--cream);display:grid;place-items:center}
-  .success .check svg{width:30px;height:30px}
-  .success h3{font-size:1.3rem}
-  .success p{color:var(--muted);font-size:.92rem;margin-top:8px}
-  .auto-note{margin-top:16px;text-align:left;background:var(--panel-2);border-radius:var(--radius-sm);
-    padding:14px;font-size:.82rem;color:var(--ink)}
-  .auto-note ul{margin:8px 0 0;padding-left:18px;color:var(--muted)}
-  .auto-note li{margin-bottom:4px}
-
-  /* ---------- MAP ---------- */
-  .map-card{padding:18px;position:relative}
-  .map-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px}
-  .map-top h3{font-size:1.05rem;font-weight:700}
-  .filters{display:flex;gap:8px;flex-wrap:wrap}
-  .filt{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--line);
-    background:var(--cream);border-radius:999px;padding:6px 12px;cursor:pointer;font-size:.8rem;color:var(--ink)}
-  .filt .d{width:11px;height:11px;border-radius:999px}
-  .filt.off{opacity:.4}
-  .mapbox{position:relative;background:var(--panel-2);border-radius:14px;overflow:hidden}
-  .mapbox svg.cz{display:block;width:100%;height:auto;color:var(--cream)}
-  .pin{position:absolute;transform:translate(-50%,-100%);cursor:pointer;border:0;background:none;padding:0;
-    width:26px;height:26px;transition:transform .12s}
-  .pin:hover{transform:translate(-50%,-100%) scale(1.18)}
-  .pin svg{width:26px;height:26px;filter:drop-shadow(0 3px 4px rgba(0,0,0,.25))}
-  .pin.hide{display:none}
-  .popcard{position:absolute;z-index:8;background:var(--panel);border:1px solid var(--line);
-    border-radius:12px;box-shadow:var(--shadow);padding:12px 14px;width:220px;transform:translate(-50%,calc(-100% - 28px));font-size:.82rem}
-  .popcard.hide{display:none}
-  .popcard .pc-type{font-family:var(--f-display);font-weight:700;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase}
-  .popcard h4{font-size:.98rem;margin:3px 0 2px}
-  .popcard .pc-city{color:var(--muted);font-size:.78rem}
-  .popcard .pc-note{margin-top:7px;color:var(--ink);font-size:.8rem}
-  .popcard .x{position:absolute;top:7px;right:9px;cursor:pointer;background:none;border:0;color:var(--muted);font-size:1rem}
-  .legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;font-size:.78rem;color:var(--muted)}
-  .legend span{display:inline-flex;align-items:center;gap:7px}
-  .legend .d{width:12px;height:12px;border-radius:999px}
-
-  /* ---------- PŘIPRAVUJEME ---------- */
-  .pb-banner{position:relative;border-radius:var(--radius);overflow:hidden;margin-bottom:30px;box-shadow:var(--shadow)}
-  .pb-banner img{width:100%;height:clamp(210px,40vw,360px);object-fit:cover;display:block}
-  .pb-badge{position:absolute;left:20px;bottom:20px;background:var(--navy);color:var(--cream);
-    font-family:var(--f-display);font-weight:700;font-size:.78rem;letter-spacing:.12em;padding:9px 18px;border-radius:999px}
-  .soon-hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
-  .soon-badge{display:inline-block;background:var(--navy);color:var(--cream);font-family:var(--f-display);
-    font-weight:700;font-size:.72rem;letter-spacing:.12em;padding:7px 15px;border-radius:999px}
-  .soon-hero h2{font-size:clamp(2rem,4.5vw,3rem);font-weight:700;margin-top:14px}
-  .soon-hero p{color:var(--ink);margin-top:14px;max-width:44ch}
-  .mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
-  .mini{display:flex;gap:11px;align-items:flex-start}
-  .mini .ico{width:30px;height:30px;color:var(--navy);flex:none}
-  .mini h4{font-size:.95rem;font-weight:600}
-  .mini p{font-size:.84rem;color:var(--muted);margin-top:2px}
-  .signup{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
-    padding:26px;box-shadow:var(--shadow)}
-  .signup h3{font-size:1.25rem;font-weight:700}
-  .signup p{color:var(--muted);font-size:.9rem;margin-top:8px}
-  .signup .row{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
-  .signup .row input{flex:1;min-width:0;padding:12px 13px;border:1.5px solid var(--line);
-    border-radius:999px;background:var(--cream);color:var(--ink);font-family:var(--f-body)}
-  .ok-msg{color:var(--school);font-size:.84rem;margin-top:10px;font-weight:600}
-
-  /* ---------- GALLERY ---------- */
-  .gal-filters{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
-  .gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
-  .gal{border-radius:14px;overflow:hidden;position:relative;aspect-ratio:4/3;border:1px solid var(--line);
-    background:var(--panel-2);display:flex;align-items:flex-end}
-  .gal .ph{position:absolute;inset:0;display:grid;place-items:center;color:var(--navy-soft);opacity:.5}
-  .gal .ph svg{width:44px;height:44px}
-  .gal .cap{position:relative;z-index:2;width:100%;padding:12px;
-    background:linear-gradient(transparent,rgba(21,46,74,.72));color:#fff;font-size:.82rem}
-  .gal .cap b{display:block;font-family:var(--f-display);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;opacity:.85}
-  .gal.hide{display:none}
-
-  /* ---------- KONTAKT ---------- */
-  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:30px}
-  .about p{margin-top:14px;max-width:54ch;color:var(--ink)}
-  .about .vals{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
-  .pill{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:8px 15px;font-size:.84rem}
-  .contact-box{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
-  .contact-box .line{display:flex;gap:11px;align-items:center;margin-bottom:14px}
-  .contact-box .line svg{width:20px;height:20px;color:var(--navy);flex:none}
-  .copy{cursor:pointer;background:none;border:0;color:var(--navy);font-family:var(--f-body);font-size:.95rem;text-decoration:underline;padding:0}
-
-  /* ---------- FOOTER ---------- */
-  footer{background:var(--navy);color:#C9D6E2;margin-top:64px;padding:38px 0 30px}
-  footer .fin{max-width:var(--maxw);margin:0 auto;padding-inline:20px;display:flex;
-    justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
-  footer .brand2{display:flex;align-items:center;gap:10px;color:var(--cream);font-family:var(--f-display);font-weight:800;font-size:1.15rem}
-  footer .brand2 svg{width:30px;height:30px}
-  footer a{color:#C9D6E2;text-decoration:none;font-size:.88rem}
-  footer a:hover{color:#fff}
-  footer .tag{font-size:.8rem;opacity:.8;margin-top:4px}
-  .proto{background:var(--yellow);color:var(--navy-deep);text-align:center;font-size:.78rem;
-    padding:7px 16px;font-family:var(--f-display);font-weight:600}
-
-  /* ---------- RESPONSIVE ---------- */
-  @media (max-width:860px){
-    .nav-in{flex-wrap:wrap}
-    .menu{order:3;width:100%;flex-direction:column;align-items:stretch;gap:2px;
-      max-height:0;overflow:hidden;opacity:0;padding:0;margin-top:0;border-top:0;
-      transition:max-height .34s ease,opacity .25s ease,padding .3s ease,margin-top .3s ease}
-    .menu.open{max-height:480px;opacity:1;padding:10px 0 6px;margin-top:4px;border-top:1px solid var(--line)}
-    .menu button{text-align:left;width:100%;padding:12px}
-    .menu .btn{text-align:center}
-    .burger{display:grid;place-items:center}
-    .nav-cta{display:none}
-    .hero,.soon-hero,.skoly-grid,.contact-grid{grid-template-columns:1fr}
-    .mods,.how .steps,.gal-grid{grid-template-columns:1fr}
-    .mini-grid{grid-template-columns:1fr}
-    .hero-art{order:-1}
-  }
-  @media (max-width:560px){
-    .chips{grid-template-columns:1fr 1fr}
-    .gal-grid{grid-template-columns:1fr 1fr}
-  }
-</style>
-
+<link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 <header class="nav">
   <div class="nav-in">
-    <button class="brand" data-nav="home" aria-label="TLAPKÁM domů">
-      <svg viewBox="0 0 48 48" fill="currentColor" aria-hidden="true">
-        <ellipse cx="14" cy="15" rx="5" ry="6.5"/><ellipse cx="24.5" cy="11" rx="5.2" ry="7"/>
-        <ellipse cx="35" cy="15" rx="5" ry="6.5"/><ellipse cx="42" cy="24" rx="4.3" ry="5.6"/>
-        <path d="M24 20c7 0 13 5 13 11 0 5-5 8-13 8s-13-3-13-8c0-6 6-11 13-11z"/>
-      </svg>
-      TLAPKÁM
-    </button>
+    <a class="brand" href="index.html" aria-label="Školy Tlapkám, domů"><svg viewBox="0 0 48 48" fill="currentColor" aria-hidden="true"><ellipse cx="14" cy="15" rx="5" ry="6.5"/><ellipse cx="24.5" cy="11" rx="5.2" ry="7"/><ellipse cx="35" cy="15" rx="5" ry="6.5"/><ellipse cx="42" cy="24" rx="4.3" ry="5.6"/><path d="M24 20c7 0 13 5 13 11 0 5-5 8-13 8s-13-3-13-8c0-6 6-11 13-11z"/></svg><span>TLAPKÁM<small>Školy Tlapkám</small></span></a>
     <button class="burger" aria-label="Menu" onclick="document.getElementById('menu').classList.toggle('open')">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
     </button>
     <nav class="menu" id="menu">
-      <button data-nav="home">Úvod</button>
-      <button data-nav="skoly">Školy TLAPKÁM</button>
-      <button data-nav="petbox">PET Box<span class="soon">PŘIPRAVUJEME</span></button>
-      <button data-nav="merch">Merch<span class="soon">PŘIPRAVUJEME</span></button>
-      <button data-nav="galerie">Galerie</button>
-      <button data-nav="kontakt">O nás & Kontakt</button>
-      <button class="btn nav-cta" data-nav="skoly">Zapojit školu
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </button>
+      <a href="index.html" class="active">O projektu</a><a href="pro-skoly.html">Pro školy</a><a href="pro-utulky.html">Pro útulky</a><a href="ke-stazeni.html">Ke stažení</a><a href="kontakt.html">Kontakt</a>
+      <a class="btn sm" href="pro-skoly.html">Zapojit školu <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </nav>
   </div>
 </header>
-
 <main>
-  <!-- ======================= HOME ======================= -->
-  <section class="page show" id="home">
-    <div class="wrap">
-      <div class="hero">
-        <div class="hero-text">
-          <span class="eyebrow">Spojujeme lidi, školy a zvířata</span>
-          <h1>Podporujeme útulky pro zvířata v nouzi</h1>
-          <p class="lead">Propojujeme školy, veřejnost a útulky do jedné sítě, která zvířatům v nouzi reálně pomáhá. Udržitelně a společně.</p>
-          <div class="hero-cta">
-            <button class="btn" data-nav="skoly">Zapojit školu do sbírky
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </button>
-            <button class="btn ghost" data-nav="skoly">Prohlédnout mapu</button>
-          </div>
-        </div>
-        <div class="hero-art">
-          <svg class="pawbg" viewBox="0 0 400 320" fill="currentColor" aria-hidden="true">
-            <ellipse cx="60" cy="70" rx="16" ry="21"/><ellipse cx="95" cy="48" rx="16" ry="22"/>
-            <ellipse cx="330" cy="250" rx="15" ry="20"/><ellipse cx="362" cy="228" rx="15" ry="21"/>
-          </svg>
-          <!-- Reálné logo TLAPKÁM z brand assetů klienta -->
-          <img class="hero-logo" src="assets/logo-tlapkam.jpg" alt="TLAPKÁM">
+
+<section>
+  <div class="wrap">
+    <div class="hero">
+      <div>
+        <span class="eyebrow">Školy Tlapkám · Tlapkám z.s.</span>
+        <h1>Společně pomáháme zvířatům</h1>
+        <p class="lead">Vzděláváme, spojujeme a podporujeme školy a útulky. Protože i malá pomoc má velký smysl.</p>
+        <div class="hero-cta">
+          <a class="btn" href="pro-skoly.html">Zapojit školu <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn ghost" href="ke-stazeni.html">Podklady ke stažení</a>
         </div>
       </div>
-
-      <!-- MODULY -->
-      <div class="mods">
-        <div class="mod" data-nav="skoly">
-          <svg class="ico" viewBox="0 0 48 48" fill="currentColor" aria-hidden="true">
-            <ellipse cx="14" cy="15" rx="4.6" ry="6"/><ellipse cx="24.5" cy="11.5" rx="4.8" ry="6.4"/>
-            <ellipse cx="35" cy="15" rx="4.6" ry="6"/><path d="M24 19c6.5 0 12 4.6 12 10 0 4.6-4.6 7.4-12 7.4S12 33.6 12 29c0-5.4 5.5-10 12-10z"/>
-            <path d="M18 24l6-3 6 3-6 3-6-3z" fill="var(--cream)"/>
-          </svg>
-          <h3>Školy TLAPKÁM</h3>
-          <p>Vzděláváme, inspirujeme a učíme děti, jak být k přírodě a zvířatům ohleduplní. A zapojujeme školy do sbírek.</p>
-          <div class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-        </div>
-        <div class="mod locked" data-nav="petbox">
-          <span class="tag">PŘIPRAVUJEME</span>
-          <svg class="ico" viewBox="0 0 48 48" fill="currentColor" aria-hidden="true">
-            <ellipse cx="14" cy="15" rx="4.6" ry="6"/><ellipse cx="24.5" cy="11.5" rx="4.8" ry="6.4"/>
-            <ellipse cx="35" cy="15" rx="4.6" ry="6"/><path d="M24 19c6.5 0 12 4.6 12 10 0 4.6-4.6 7.4-12 7.4S12 33.6 12 29c0-5.4 5.5-10 12-10z"/>
-            <rect x="18" y="24" width="12" height="9" rx="1.5" fill="var(--cream)"/><path d="M18 27h12" stroke="var(--navy)" stroke-width="1.4"/>
-          </svg>
-          <h3>PET Box TLAPKÁM</h3>
-          <p>Pomáháme útulkům prostřednictvím dobročinných boxů plných potřeb a radosti.</p>
-          <div class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-        </div>
-        <div class="mod locked" data-nav="merch">
-          <span class="tag">PŘIPRAVUJEME</span>
-          <svg class="ico" viewBox="0 0 48 48" fill="currentColor" aria-hidden="true">
-            <ellipse cx="14" cy="15" rx="4.6" ry="6"/><ellipse cx="24.5" cy="11.5" rx="4.8" ry="6.4"/>
-            <ellipse cx="35" cy="15" rx="4.6" ry="6"/><path d="M24 19c6.5 0 12 4.6 12 10 0 4.6-4.6 7.4-12 7.4S12 33.6 12 29c0-5.4 5.5-10 12-10z"/>
-            <path d="M19 25l5-2 5 2v7h-10z" fill="var(--cream)"/>
-          </svg>
-          <h3>Merch TLAPKÁM</h3>
-          <p>Stylový merch, který má smysl. Každým nákupem podporujete zvířata v útulcích.</p>
-          <div class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-        </div>
-      </div>
-
-      <!-- JAK TO FUNGUJE -->
-      <div class="how">
-        <span class="eyebrow" style="color:var(--yellow)">Jak projekt funguje</span>
-        <h2>Od školní sbírky až k plné misce v útulku</h2>
-        <div class="steps">
-          <div class="step">
-            <span class="num">KROK 01</span>
-            <h4>Školy &amp; sběr</h4>
-            <p>Školka, škola nebo dětský domov se zaregistruje, vybere si útulek ve svém okolí a spustí sbírku.</p>
-          </div>
-          <div class="step">
-            <span class="num">KROK 02</span>
-            <h4>Podpora útulků</h4>
-            <p>Vybrané krmivo, deky a potřeby putují přímo do ověřeného útulku. Vše se propíše na mapu.</p>
-          </div>
-          <div class="step">
-            <span class="num">KROK 03</span>
-            <h4>PET Boxy &amp; B2B</h4>
-            <p>Do budoucna rozšiřujeme pomoc o sběrné PET Boxy v nákupních centrech a firemní partnerství.</p>
-          </div>
-        </div>
+      <div class="hero-art">
+        <svg class="pawbg" viewBox="0 0 400 320" fill="currentColor" aria-hidden="true"><ellipse cx="60" cy="70" rx="16" ry="21"/><ellipse cx="95" cy="48" rx="16" ry="22"/><ellipse cx="330" cy="250" rx="15" ry="20"/><ellipse cx="362" cy="228" rx="15" ry="21"/></svg>
+        <img class="hero-logo" src="assets/logo-skoly.png" alt="Školy Tlapkám">
       </div>
     </div>
-  </section>
 
-  <!-- ======================= ŠKOLY ======================= -->
-  <section class="page" id="skoly">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow">Spojujeme školy, útulky a lepší budoucnost</span>
-        <h2>Školy a Mapa</h2>
-        <p>Zaregistrujte svou školu, zapojte se do sbírky a pomozte útulkům ve svém okolí. Na mapě najdete, kde už pomáhají školy i útulky po celé České republice.</p>
-      </div>
+    <div class="cards">
+      <a class="card" href="pro-skoly.html">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M5 21V7h14v14M9 21v-4h6v4M9 11h.01M15 11h.01M12 3l7 4H5z"/></svg>
+        <h3>Pro školy</h3><p>Zapojte se do Vánoční sbírky nebo Tlapkové výzvy a pomáhejte se třídou útulkům ve svém okolí.</p>
+        <div class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </a>
+      <a class="card" href="pro-utulky.html">
+        <svg class="ico" viewBox="0 0 48 48" fill="currentColor"><ellipse cx="14" cy="15" rx="4.6" ry="6"/><ellipse cx="24.5" cy="11.5" rx="4.8" ry="6.4"/><ellipse cx="35" cy="15" rx="4.6" ry="6"/><path d="M24 19c6.5 0 12 4.6 12 10 0 4.6-4.6 7.4-12 7.4S12 33.6 12 29c0-5.4 5.5-10 12-10z"/></svg>
+        <h3>Pro útulky</h3><p>Zaregistrujte útulek, azyl nebo depozitum a získejte materiální pomoc od škol.</p>
+        <div class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </a>
+      <a class="card" href="ke-stazeni.html">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9z"/><path d="M14 3v6h6M12 12v6M9 15l3 3 3-3"/></svg>
+        <h3>Ke stažení</h3><p>Plakáty, dopis pro rodiče, pracovní listy, návody a diplomy. Volně, bez registrace.</p>
+        <div class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </a>
+    </div>
+  </div>
+</section>
 
-      <div class="skoly-grid">
-        <!-- FORMULÁŘ -->
-        <div class="card form-card">
-          <div id="formWrap">
-            <div class="form-head">
-              <svg class="ico" viewBox="0 0 48 48" fill="currentColor" aria-hidden="true">
-                <rect x="10" y="20" width="28" height="18" rx="2"/><path d="M24 10l16 8H8z"/>
-                <rect x="20" y="28" width="8" height="10" fill="var(--panel)"/>
-              </svg>
-              <h3>Registrace školy</h3>
-            </div>
-            <p>Přidejte se k nám a staňte se součástí komunity, která pomáhá.</p>
-
-            <div class="stepper">
-              <div class="s on" data-step="1"><span class="dot">1</span><span>Typ školy</span></div>
-              <div class="bar"></div>
-              <div class="s" data-step="2"><span class="dot">2</span><span>Výběr útulku</span></div>
-              <div class="bar"></div>
-              <div class="s" data-step="3"><span class="dot">3</span><span>Kontakt</span></div>
-            </div>
-
-            <!-- KROK 1 -->
-            <div class="fstep" data-s="1">
-              <div class="field">
-                <label>1. Vyberte typ zařízení</label>
-                <div class="chips" id="chips">
-                  <button class="chip" data-type="Mateřská škola">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V9l7-5 7 5v12M10 21v-5h4v5"/></svg>Mateřská škola</button>
-                  <button class="chip" data-type="Základní škola">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 5 2 10l10 5 10-5zM6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg>Základní škola</button>
-                  <button class="chip" data-type="Střední škola">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7h14v14M9 21v-4h6v4M9 11h.01M15 11h.01"/></svg>Střední / gymnázium</button>
-                  <button class="chip" data-type="Vysoká škola">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 5 2 10l10 5 10-5zM6 12v5c0 1 3 3 6 3s6-2 6-3v-5M22 10v6"/></svg>Vysoká škola</button>
-                  <button class="chip" data-type="Dětský domov">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8M5 10v10h14V10M10 20v-6h4v6"/></svg>Dětský domov</button>
-                </div>
-              </div>
-              <div class="field">
-                <label>Název zařízení / školy</label>
-                <input type="text" id="skolaNazev" placeholder="např. ZŠ Komenského, Praha 6">
-              </div>
-              <div class="form-actions">
-                <button class="btn" style="flex:1;justify-content:center" onclick="nextStep(2)">Pokračovat
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-              </div>
-            </div>
-
-            <!-- KROK 2 -->
-            <div class="fstep" data-s="2" hidden>
-              <div class="field ac">
-                <label>2. Vyberte útulek, který chcete podpořit</label>
-                <input type="text" id="acInput" placeholder="Začněte psát název nebo město..." autocomplete="off">
-                <div class="ac-list" id="acList" hidden></div>
-              </div>
-              <div id="pickedWrap"></div>
-              <div class="field">
-                <label>Termín / cyklus sbírky</label>
-                <input type="text" id="termin" placeholder="např. do 30. 6. 2026 / jednorázově">
-              </div>
-              <div class="form-actions">
-                <button class="btn ghost" onclick="nextStep(1)">Zpět</button>
-                <button class="btn" onclick="nextStep(3)">Pokračovat
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-              </div>
-            </div>
-
-            <!-- KROK 3 -->
-            <div class="fstep" data-s="3" hidden>
-              <div class="field"><label>Kontaktní osoba</label><input type="text" id="ckJmeno" placeholder="Jméno a příjmení"></div>
-              <div class="field"><label>E-mail</label><input type="email" id="ckEmail" placeholder="vas@email.cz"></div>
-              <div class="field"><label>Telefon</label><input type="tel" id="ckTel" placeholder="+420"></div>
-              <label class="consent"><input type="checkbox" id="gdpr">
-                Souhlasím se zpracováním osobních údajů za účelem registrace do projektu (GDPR).</label>
-              <div class="form-actions">
-                <button class="btn ghost" onclick="nextStep(2)">Zpět</button>
-                <button class="btn" onclick="submitForm()">Odeslat registraci
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- MAPA -->
-        <div class="card map-card">
-          <div class="map-top">
-            <h3>Mapa zapojených škol a útulků</h3>
-            <div class="filters">
-              <button class="filt" id="fSchool" onclick="toggleFilter('school')"><span class="d" style="background:var(--school)"></span>Školy</button>
-              <button class="filt" id="fShelter" onclick="toggleFilter('shelter')"><span class="d" style="background:var(--shelter)"></span>Útulky</button>
-            </div>
-          </div>
-          <div class="mapbox" id="mapbox">
-            <svg class="cz" viewBox="0 0 640 400" aria-label="Mapa České republiky" role="img">
-              <path fill="currentColor" stroke="var(--line)" stroke-width="2" d="M70 180
-                C60 150 95 120 130 118 C150 95 185 88 210 100 C235 80 275 78 300 96
-                C330 70 380 72 405 98 C440 86 485 92 505 118 C545 118 575 140 572 172
-                C600 185 598 222 568 236 C560 268 525 282 495 272 C475 300 435 306 408 288
-                C385 312 342 314 318 294 C290 316 248 314 226 292 C198 312 158 308 140 282
-                C105 286 74 262 78 230 C52 220 50 192 70 180 Z"/>
-            </svg>
-            <div id="pins"></div>
-            <div class="popcard hide" id="popcard">
-              <button class="x" onclick="document.getElementById('popcard').classList.add('hide')" aria-label="Zavřít">&times;</button>
-              <div class="pc-type" id="pcType"></div>
-              <h4 id="pcName"></h4>
-              <div class="pc-city" id="pcCity"></div>
-              <div class="pc-note" id="pcNote"></div>
-            </div>
-          </div>
-          <div class="legend">
-            <span><span class="d" style="background:var(--school)"></span>Registrované školy (sbírka aktivní)</span>
-            <span><span class="d" style="background:var(--shelter)"></span>Ověřené útulky (přijímají pomoc)</span>
-          </div>
-        </div>
+<section class="tight">
+  <div class="wrap">
+    <div class="how">
+      <span class="eyebrow" style="color:var(--yellow)">Jak to funguje</span>
+      <h2>Tři kroky, žádná zbytečná administrativa</h2>
+      <div class="steps">
+        <div><span class="num">KROK 01</span><h4>Stáhněte si podklady</h4><p>Plakát, dopis rodičům nebo To-Do list s úkoly. Bez registrace, rovnou k tisku.</p></div>
+        <div><span class="num">KROK 02</span><h4>Splňte to se třídou</h4><p>Uspořádejte sbírku krmiva a potřeb, nebo projděte 6 edukačních úkolů Tlapkové výzvy.</p></div>
+        <div><span class="num">KROK 03</span><h4>Odevzdejte jedním formulářem</h4><p>Údaje o škole, výběr útulku a fotky nahrajete najednou. Pomoc putuje přímo do útulku.</p></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ======================= PET BOX ======================= -->
-  <section class="page" id="petbox">
-    <div class="wrap">
-      <div class="pb-banner">
-        <img src="assets/petbox-foto.jpg" alt="PET Box TLAPKÁM v nákupním centru">
-        <span class="pb-badge">PŘIPRAVUJEME</span>
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Dvě aktivity pro školy</span><h2>Vyberte si, jak se zapojíte</h2></div>
+    <div class="two">
+      <div class="act">
+        <span class="tag">MATERIÁLNÍ SBÍRKA</span>
+        <h3>Vánoční sbírka</h3>
+        <p>Škola uspořádá sbírku krmiva a potřeb pro vybraný útulek. Dodáme plakát na nástěnku, dopis pro rodiče i cedulky na sběrné krabice.</p>
+        <div class="actions"><a class="btn" href="formular-sbirka.html">Přihlásit školu <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn ghost" href="ke-stazeni.html#sbirka">Podklady</a></div>
       </div>
-      <div class="soon-hero">
-        <div>
-          <span class="soon-badge">PŘIPRAVUJEME · BRZY VE VAŠEM MĚSTĚ</span>
-          <h2>PET Box TLAPKÁM</h2>
-          <p>Sběrné boxy na krmivo pro zvířata v nouzi, které najdete v nákupních centrech a na veřejných místech po celé České republice.</p>
-          <div class="mini-grid">
-            <div class="mini"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg><div><h4>V nákupních centrech</h4><p>Snadná možnost pomoci při nákupech.</p></div></div>
-            <div class="mini"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><div><h4>Na veřejných místech</h4><p>Dostupné pro všechny.</p></div></div>
-            <div class="mini"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 8.6a5.5 5.5 0 00-9.8-2 5.5 5.5 0 10-8 7.4l8 8 8-8a5.5 5.5 0 001.8-5.4z"/></svg><div><h4>Pomoc zvířatům</h4><p>Každá dávka má smysl.</p></div></div>
-            <div class="mini"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 019 6a8 8 0 0113-2 7 7 0 01-2 13 6 6 0 01-9 3z"/></svg><div><h4>Udržitelně</h4><p>Méně plýtvání, více dobra.</p></div></div>
-          </div>
-        </div>
-        <div class="signup">
-          <h3>Zajímá vás B2B partnerství?</h3>
-          <p>PET Boxy právě připravujeme. Jste nákupní centrum, obchod nebo firma a chcete box u vás? Nechte nám kontakt, ozveme se.</p>
-          <div class="row"><input type="text" id="b2bFirma" placeholder="Firma / provozovna"></div>
-          <div class="row"><input type="email" id="b2bEmail" placeholder="Kontaktní e-mail"></div>
-          <div class="row"><button class="btn" style="flex:1;justify-content:center" onclick="miniSignup('b2bEmail','b2bOk')">Mám zájem o partnerství
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
-          <div class="ok-msg" id="b2bOk" hidden>Děkujeme, ozveme se vám na uvedený e-mail.</div>
-        </div>
+      <div class="act">
+        <span class="tag">UČÍME SE PRO ÚTULKY</span>
+        <h3>Vánoční tlapková výzva</h3>
+        <p>Třída splní 6 edukačních úkolů z pracovního listu (včetně výroby čichacího koberečku pro psy) a získá diplom. Hotovo odevzdáte jedním formulářem s fotkami.</p>
+        <div class="actions"><a class="btn" href="formular-vyzva.html">Máme hotovo! <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn ghost" href="ke-stazeni.html#vyzva">Podklady</a></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ======================= MERCH ======================= -->
-  <section class="page" id="merch">
-    <div class="wrap">
-      <div class="soon-hero">
-        <div>
-          <span class="soon-badge">PŘIPRAVUJEME · PRVNÍ DROP SE CHYSTÁ</span>
-          <h2>Merch TLAPKÁM</h2>
-          <p>Chystáme autorskou kolekci: streetwear, doplňky pro venčení a minimalistické printy. Stylový merch, který má smysl, každým kouskem podpoříte zvířata v útulcích.</p>
-          <div class="mini-grid">
-            <div class="mini"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6l-4-3-4 2-4-2-4 3 3 4v9h10v-9l3-4z"/></svg><div><h4>Autorská kolekce</h4><p>Originální design, limitovaně.</p></div></div>
-            <div class="mini"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 8.6a5.5 5.5 0 00-9.8-2 5.5 5.5 0 10-8 7.4l8 8 8-8a5.5 5.5 0 001.8-5.4z"/></svg><div><h4>Nákup pomáhá</h4><p>Výtěžek jde do útulků.</p></div></div>
-          </div>
-        </div>
-        <div class="signup">
-          <h3>Buďte u prvního dropu</h3>
-          <p>Nechte nám e-mail a dáme vám vědět, jakmile první kolekci spustíme.</p>
-          <div class="row"><input type="email" id="merchEmail" placeholder="Váš e-mail"></div>
-          <div class="row"><button class="btn" style="flex:1;justify-content:center" onclick="miniSignup('merchEmail','merchOk')">Chci vědět o spuštění
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
-          <div class="ok-msg" id="merchOk" hidden>Hotovo, napíšeme vám, až spustíme první drop.</div>
-        </div>
-      </div>
+<section class="tight">
+  <div class="wrap">
+    <div class="partners">
+      <span class="lab">Partneři projektu</span>
+      <div class="slot">logo partnera</div><div class="slot">logo partnera</div><div class="slot">logo partnera</div>
+      <span class="muted" style="font-size:.82rem">Loga partnerů doplňujeme.</span>
     </div>
-  </section>
-
-  <!-- ======================= GALERIE ======================= -->
-  <section class="page" id="galerie">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow">Fotky z projektu</span>
-        <h2>Galerie</h2>
-        <p>V galerii se potkávají fotky ze všech větví projektu: školní sbírky, útulky, kterým se pomohlo, a brzy i PET Boxy a merch.</p>
-      </div>
-      <div class="gal-filters" id="galFilters">
-        <button class="filt" data-g="all" onclick="galFilter('all')">Vše</button>
-        <button class="filt off" data-g="skoly" onclick="galFilter('skoly')">Školní sbírky</button>
-        <button class="filt off" data-g="utulky" onclick="galFilter('utulky')">Útulky</button>
-        <button class="filt off" data-g="petbox" onclick="galFilter('petbox')">PET Boxy</button>
-        <button class="filt off" data-g="merch" onclick="galFilter('merch')">Merch</button>
-      </div>
-      <div class="gal-grid" id="galGrid"></div>
-      <p style="color:var(--muted);font-size:.82rem;margin-top:16px">Ukázková galerie. Reálné fotky nahrává správce přes administraci a přiřazuje jim štítek i krátký popis.</p>
-    </div>
-  </section>
-
-  <!-- ======================= KONTAKT ======================= -->
-  <section class="page" id="kontakt">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow">O nás &amp; Kontakt</span>
-        <h2>Spojujeme lidi, školy a zvířata</h2>
-      </div>
-      <div class="contact-grid">
-        <div class="about">
-          <p>TLAPKÁM je projekt udržitelné pomoci zvířatům v nouzi. Propojujeme školy, veřejnost, B2B partnery a útulky do jedné sítě, kde každý může přiložit tlapku. Učíme děti ohleduplnosti k přírodě a zvířatům a pomáháme útulkům tam, kde to nejvíc potřebují.</p>
-          <div class="vals">
-            <span class="pill">🤍 Společně pomáháme</span>
-            <span class="pill">Udržitelně</span>
-            <span class="pill">Transparentně</span>
-          </div>
-        </div>
-        <div class="contact-box">
-          <div class="line">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4zM4 7l8 6 8-6"/></svg>
-            <button class="copy" onclick="copyTxt('info@tlapkam.cz',this)">info@tlapkam.cz</button>
-          </div>
-          <div class="line">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 2 .8 2.9a2 2 0 01-.5 2.1L8.1 10a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.9.6 2.9.7a2 2 0 011.7 2z"/></svg>
-            <button class="copy" onclick="copyTxt('+420 777 123 456',this)">+420 777 123 456</button>
-          </div>
-          <div class="line">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span style="font-size:.95rem">Česká republika</span>
-          </div>
-          <button class="btn" style="width:100%;justify-content:center;margin-top:6px" data-nav="skoly">Zapojit školu do sbírky</button>
-        </div>
-      </div>
-    </div>
-  </section>
+  </div>
+</section>
 </main>
-
 <footer>
   <div class="fin">
     <div>
-      <div class="brand2">
-        <svg viewBox="0 0 48 48" fill="currentColor" aria-hidden="true">
-          <ellipse cx="14" cy="15" rx="5" ry="6.5"/><ellipse cx="24.5" cy="11" rx="5.2" ry="7"/>
-          <ellipse cx="35" cy="15" rx="5" ry="6.5"/><path d="M24 20c7 0 13 5 13 11 0 5-5 8-13 8s-13-3-13-8c0-6 6-11 13-11z"/>
-        </svg>
-        TLAPKÁM
-      </div>
-      <div class="tag">Spojujeme lidi, školy a zvířata. 🤍</div>
+      <div class="brand2"><svg viewBox="0 0 48 48" fill="currentColor" aria-hidden="true"><ellipse cx="14" cy="15" rx="5" ry="6.5"/><ellipse cx="24.5" cy="11" rx="5.2" ry="7"/><ellipse cx="35" cy="15" rx="5" ry="6.5"/><ellipse cx="42" cy="24" rx="4.3" ry="5.6"/><path d="M24 20c7 0 13 5 13 11 0 5-5 8-13 8s-13-3-13-8c0-6 6-11 13-11z"/></svg> TLAPKÁM</div>
+      <div class="tag">Společně pomáháme zvířatům. 🤍</div>
     </div>
     <div style="display:flex;gap:22px;flex-wrap:wrap">
-      <a href="#" data-nav="skoly">Školy</a>
-      <a href="#" data-nav="petbox">PET Box</a>
-      <a href="#" data-nav="merch">Merch</a>
-      <a href="#" data-nav="galerie">Galerie</a>
-      <a href="#" data-nav="kontakt">Kontakt</a>
+      <a href="pro-skoly.html">Pro školy</a>
+      <a href="pro-utulky.html">Pro útulky</a>
+      <a href="ke-stazeni.html">Ke stažení</a>
+      <a href="kontakt.html">Kontakt</a>
     </div>
+    <div class="legal">Tlapkám z.s. · Školy Tlapkám · Údaje z formulářů nejsou veřejné a slouží pouze k organizaci projektu.</div>
   </div>
 </footer>
-<div class="proto">Prototyp Fáze 1 · nezávazný návrh pro projekt TLAPKÁM · data a formuláře jsou ukázkové (bez reálného backendu)</div>
-
-<script>
-(function(){
-  // ---------- ROUTING ----------
-  function go(id){
-    document.querySelectorAll('section.page').forEach(s=>s.classList.toggle('show',s.id===id));
-    document.querySelectorAll('.menu button[data-nav]').forEach(b=>b.classList.toggle('active',b.dataset.nav===id));
-    document.getElementById('menu').classList.remove('open');
-    window.scrollTo({top:0,behavior:'smooth'});
-  }
-  document.addEventListener('click',e=>{
-    const t=e.target.closest('[data-nav]');
-    if(t){e.preventDefault();go(t.dataset.nav);}
-  });
-
-  // ---------- DATA ----------
-  var shelters=[
-    {name:'Útulek Záchraná tlapka',city:'Praha 6',x:300,y:150,note:'Přijímá: krmivo, deky, hračky'},
-    {name:'Pejsci z Bulharečka',city:'Brno',x:395,y:250,note:'Přijímá: granule, pelíšky'},
-    {name:'Kočičí depozitum Ostrava',city:'Ostrava',x:500,y:195,note:'Přijímá: konzervy, steliva'},
-    {name:'Psí domov Plzeň',city:'Plzeň',x:150,y:205,note:'Přijímá: krmivo, obojky'},
-    {name:'Azyl pro zvířata Liberec',city:'Liberec',x:330,y:110,note:'Přijímá: deky, krmivo'},
-    {name:'Útulek Zelená louka',city:'České Budějovice',x:245,y:300,note:'Přijímá: granule, hračky'},
-    {name:'Tlapky Hradec',city:'Hradec Králové',x:400,y:150,note:'Přijímá: krmivo, steliva'}
-  ];
-  var schools=[
-    {name:'ZŠ Komenského',city:'Praha 6',x:285,y:168,note:'Sbírka probíhá: do 30. 6. 2026'},
-    {name:'Gymnázium Na Vyhlídce',city:'Brno',x:378,y:238,note:'Sbírka probíhá: do 15. 5. 2026'},
-    {name:'MŠ Sluníčko',city:'Plzeň',x:165,y:190,note:'Sbírka proběhla: 2025'},
-    {name:'SŠ Karlovy Vary',city:'Karlovy Vary',x:110,y:160,note:'Sbírka probíhá: průběžně'},
-    {name:'ZŠ Olomouc-střed',city:'Olomouc',x:455,y:225,note:'Sbírka probíhá: do 30. 4. 2026'}
-  ];
-
-  // ---------- MAP RENDER ----------
-  var filter={school:true,shelter:true};
-  function pinSVG(color){
-    return '<svg viewBox="0 0 24 32" fill="'+color+'"><path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 20 12 20s12-11 12-20C24 5.4 18.6 0 12 0z"/><circle cx="12" cy="12" r="5" fill="#F7F1E2"/></svg>';
-  }
-  function renderPins(){
-    var box=document.getElementById('pins');box.innerHTML='';
-    var all=[].concat(schools.map(s=>Object.assign({t:'school'},s)),shelters.map(s=>Object.assign({t:'shelter'},s)));
-    all.forEach(function(p){
-      var b=document.createElement('button');
-      b.className='pin'+(filter[p.t]?'':' hide');
-      b.style.left=(p.x/640*100)+'%';b.style.top=(p.y/400*100)+'%';
-      b.innerHTML=pinSVG(p.t==='school'?getCss('--school'):getCss('--shelter'));
-      b.setAttribute('aria-label',p.name);
-      b.onclick=function(ev){ev.stopPropagation();showPop(p,b);};
-      box.appendChild(b);
-    });
-  }
-  function getCss(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim();}
-  function showPop(p,el){
-    var pc=document.getElementById('popcard');
-    document.getElementById('pcType').textContent=p.t==='school'?'🏫 Zapojená škola':'🐾 Ověřený útulek';
-    document.getElementById('pcType').style.color=p.t==='school'?getCss('--school'):getCss('--shelter');
-    document.getElementById('pcName').textContent=p.name;
-    document.getElementById('pcCity').textContent=p.city;
-    document.getElementById('pcNote').textContent=p.note;
-    pc.style.left=el.style.left;pc.style.top=el.style.top;
-    pc.classList.remove('hide');
-  }
-  document.getElementById('mapbox').addEventListener('click',function(e){
-    if(!e.target.closest('.pin')&&!e.target.closest('.popcard'))
-      document.getElementById('popcard').classList.add('hide');
-  });
-  window.toggleFilter=function(t){
-    filter[t]=!filter[t];
-    document.getElementById(t==='school'?'fSchool':'fShelter').classList.toggle('off',!filter[t]);
-    document.getElementById('popcard').classList.add('hide');
-    renderPins();
-  };
-
-  // ---------- FORM ----------
-  var picked=null, chosenType=null;
-  document.getElementById('chips').addEventListener('click',function(e){
-    var c=e.target.closest('.chip');if(!c)return;
-    document.querySelectorAll('#chips .chip').forEach(x=>x.classList.remove('sel'));
-    c.classList.add('sel');chosenType=c.dataset.type;
-  });
-  window.nextStep=function(n){
-    document.querySelectorAll('.fstep').forEach(f=>f.hidden=(+f.dataset.s!==n));
-    document.querySelectorAll('.stepper .s').forEach(s=>s.classList.toggle('on',+s.dataset.step<=n));
-  };
-  // autocomplete (našeptávač naoko)
-  var acIn=document.getElementById('acInput'),acList=document.getElementById('acList');
-  acIn.addEventListener('input',function(){
-    var q=acIn.value.toLowerCase().trim();
-    if(q.length<1){acList.hidden=true;return;}
-    var m=shelters.filter(s=>s.name.toLowerCase().includes(q)||s.city.toLowerCase().includes(q));
-    if(!m.length){acList.hidden=true;return;}
-    acList.innerHTML='';
-    m.forEach(function(s){
-      var b=document.createElement('button');
-      b.innerHTML=s.name+'<small>'+s.city+' · '+s.note+'</small>';
-      b.onclick=function(){
-        picked=s;acIn.value=s.name;acList.hidden=true;
-        document.getElementById('pickedWrap').innerHTML=
-          '<div class="picked">Vybraný útulek: <b>'+s.name+'</b>, '+s.city+
-          '<div class="gps">📍 Adresa a GPS se automaticky načtou z vybraného útulku (přes API našeptávače).</div></div>';
-      };
-      acList.appendChild(b);
-    });
-    acList.hidden=false;
-  });
-
-  window.submitForm=function(){
-    var email=document.getElementById('ckEmail').value.trim();
-    var jmeno=document.getElementById('ckJmeno').value.trim();
-    var gdpr=document.getElementById('gdpr').checked;
-    if(!chosenType){alert2('Vyberte prosím typ zařízení (krok 1).');return;}
-    if(!jmeno||!email){alert2('Doplňte prosím kontaktní osobu a e-mail.');return;}
-    if(!gdpr){alert2('Pro odeslání je potřeba souhlas se zpracováním údajů.');return;}
-    var nazev=document.getElementById('skolaNazev').value.trim()||chosenType;
-    // "propsání" nového bodu do mapy (demo)
-    if(picked){
-      schools.push({name:nazev,city:picked.city,x:picked.x-14,y:picked.y+16,
-        note:'Sbírka probíhá: '+(document.getElementById('termin').value.trim()||'nově zaregistrováno')});
-      renderPins();
-    }
-    document.getElementById('formWrap').innerHTML=
-      '<div class="success"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div>'+
-      '<h3>Registrace odeslána!</h3>'+
-      '<p>Děkujeme, '+esc(jmeno)+'. Vaše škola byla přidána do sbírky'+(picked?' a propsala se na mapu':'')+'.</p>'+
-      '<div class="auto-note"><b>Co se teď v ostré verzi stane automaticky:</b><ul>'+
-      '<li>Na <b>'+esc(email)+'</b> dorazí uvítací e-mail s PDF podklady ke sbírce.</li>'+
-      '<li>Správce dostane notifikaci o nové registraci.</li>'+
-      '<li>Po schválení se bod propíše na veřejnou mapu dle GPS útulku.</li>'+
-      '</ul></div></div>';
-  };
-  function esc(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
-  function alert2(m){
-    var w=document.getElementById('formWrap');
-    var old=w.querySelector('.inlineErr');if(old)old.remove();
-    var d=document.createElement('div');d.className='inlineErr';d.textContent=m;
-    d.style.cssText='background:#f7e0d6;color:#9a3b12;border-radius:10px;padding:10px 13px;font-size:.84rem;margin-bottom:12px';
-    w.insertBefore(d,w.querySelector('.stepper').nextSibling);
-    setTimeout(()=>d.remove(),4000);
-  }
-
-  // ---------- MINI SIGNUPS ----------
-  window.miniSignup=function(inId,okId){
-    var v=document.getElementById(inId).value.trim();
-    var ok=document.getElementById(okId);
-    if(!v||!v.includes('@')){ok.textContent='Zadejte prosím platný e-mail.';ok.style.color=getCss('--shelter');ok.hidden=false;return;}
-    ok.textContent=okId==='b2bOk'?'Děkujeme, ozveme se vám na uvedený e-mail.':'Hotovo, napíšeme vám, až spustíme první drop.';
-    ok.style.color=getCss('--school');ok.hidden=false;
-    document.getElementById(inId).value='';
-  };
-
-  // ---------- GALLERY ----------
-  var gal=[
-    {t:'skoly',lab:'Školní sbírka',cap:'ZŠ Karlovy Vary, předání antiparazitik'},
-    {t:'utulky',lab:'Útulek',cap:'Nové pelíšky pro psí domov Plzeň'},
-    {t:'skoly',lab:'Školní sbírka',cap:'MŠ Sluníčko, děti balí krmivo'},
-    {t:'utulky',lab:'Útulek',cap:'Kočičí depozitum, plné misky'},
-    {t:'petbox',lab:'PET Box',cap:'Umístění boxu (vizualizace)'},
-    {t:'merch',lab:'Merch',cap:'Náhled autorské kolekce'}
-  ];
-  function renderGal(f){
-    var g=document.getElementById('galGrid');g.innerHTML='';
-    gal.forEach(function(it){
-      if(f!=='all'&&it.t!==f)return;
-      var d=document.createElement('div');d.className='gal';
-      d.innerHTML='<div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.8"/><path d="M21 16l-5-5L5 20"/></svg></div>'+
-        '<div class="cap"><b>'+it.lab+'</b>'+it.cap+'</div>';
-      g.appendChild(d);
-    });
-  }
-  window.galFilter=function(f){
-    document.querySelectorAll('#galFilters .filt').forEach(b=>b.classList.toggle('off',b.dataset.g!==f));
-    renderGal(f);
-  };
-
-  // ---------- COPY ----------
-  window.copyTxt=function(txt,el){
-    var done=function(){var o=el.textContent;el.textContent='Zkopírováno ✓';setTimeout(()=>el.textContent=o,1500);};
-    if(navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(txt).then(done).catch(function(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);});
-    }else{var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);}
-  };
-
-  // init
-  renderPins();renderGal('all');
-})();
-</script>
-
+<div class="proto">Pracovní verze webu · obsah a soubory ke stažení doplňujeme podle podkladů od Tlapkám z.s.</div>
 </body>
 </html>
