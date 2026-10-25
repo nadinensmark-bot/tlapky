@@ -1,0 +1,122 @@
+Dobrý den,
+
+posílám Vám kompletní podklady a specifikaci pro tvorbu webových stránek Školy Tlapkám.
+
+Logiku projektu jsme zjednodušily tak, aby byla pro učitele co nejméně administrativně náročná. Podklady a To-Do listy si vyučující stáhnou volně bez předchozí registrace a formulář vyplní až ve chvíli, kdy mají úkoly se třídou splněné – v jednom kroku zadají údaje, vyberou útulek a nahrají fotky.
+
+Zde je podrobný přehled požadované struktury, formulářů a databázového propojení:
+
+📐 ZADÁNÍ PRO WEBOVÉ STRÁNKY: ŠKOLY TLAPKÁM
+1. STRUKTURA KE STAŽENÍ (DOWNLOAD CENTRUM)
+Na webu potřebujeme přehlednou a snadno dostupnou sekci „Ke stažení“, kde budou veškeré podklady volně přístupné k tisku (bez registrace):
+
+Sekce Vánoční sbírka:
+
+Plakát na školní nástěnku (PDF k tisku)
+
+Informační dopis pro rodiče (Word / PDF)
+
+Šablony a cedulky na sběrné krabice
+
+Sekce Vánoční tlapková výzva (Učíme se pro útulky):
+
+Pracovní list / To-Do list s 6 edukačními úkoly (PDF k tisku)
+
+Návod na výrobu čichacího koberečku pro psy
+
+Diplom / Certifikát pro zapojenou třídu
+
+2. FORMULÁŘE NA WEBU (3 HLAVNÍ FORMULÁŘE)
+🅰️ FORMULÁŘ #1: Přihlášení do Vánoční sbírky (Klasická materiální sbírka)
+Účel: Škola se hlásí do fyzické sbírky krmiva a potrieb na škole.
+
+Požadovaná pole:
+
+Název školy
+
+Adresa školy (Ulice, Město, PSČ)
+
+Kontaktní osoba za školu (Jméno a příjmení)
+
+E-mail kontaktní osoby
+
+Telefon kontaktní osoby
+
+Název vybraného útulku
+
+Adresa vybraného útulku
+
+Kontaktní osoba v útulku (Jméno, e-mail, telefon)
+
+🅱️ FORMULÁŘ #2: Odevzdání Vánoční tlapkové výzvy („Máme hotovo!“)
+Účel: Učitel si volně stáhl To-Do list, se třídou ho splnil a na web přichází v jednom kroku vyplnit údaje, vybrat útulek a rovnou nahrát fotky ze splněných úkolů.
+
+Požadovaná pole:
+
+Název školy
+
+Adresa školy (Ulice, Město, PSČ)
+
+Kontaktní osoba za školu (Učitel / Učitelka)
+
+E-mail kontaktní osoby
+
+Telefon kontaktní osoby
+
+Výběr obdarovaného útulku:
+
+Rozbalovací nabídka (Select) z naší databáze schválených útulků (seřazeno dle krajů)
+
+Možnost zvolit položku „Jiný / Vlastní lokální útulek“ ➔ po kliknutí otevře doplňující pole: Název útulku, Adresa, Kontaktní osoba, Telefon/E-mail
+
+Nahrání podkladů (Upload):
+
+Pole pro hromadné nahrání až 6 fotek nebo 1 souboru (PDF / ZIP) se splněným To-Do listem a fotodokumentací.
+
+Vzkaz od dětí / Poznámka pro útulek
+
+Ⓒ FORMULÁŘ #3: Registrace pro útulky (Žádost o materiální pomoc)
+Účel: Registrace pro všechny útulky, azyl a depozita, které mají zájem o zařazení do naší databáze a příjem pomoci od škol.
+
+Požadovaná pole:
+
+Název útulku / spolku / azylu
+
+IČO (je-li přiděleno)
+
+Adresa útulku (pro doručování / předání)
+
+Kontaktní osoba (Jméno, příjmení, pozice)
+
+E-mail
+
+Telefon
+
+O jaká zvířata se primárně starají (Psi / Kočky / Jiná)
+
+Aktuální kapacita / Počet zvířat v péči
+
+Krátká poznámka (Co akutně nejvíce chybí – např. konzervy pro koťata, deky, veterinární péče...)
+
+3. INTERNÍ DATABÁZE A AUTOMATICKÉ UKLÁDÁNÍ DATA (PRIVÁTNÍ)
+Všechna data z Vyplněných formulářů musí zůstat veřejnosti skrytá a automaticky se ukládat do naší soukromé interní databáze (přístupné pouze pro nás):
+
+Požadovaná integrace: Automatické odesílání dat z formulářů do Google Sheets (Google Tabulek) nebo Airtable (např. přes Make.com / webhook / plugin formuláře), případně ukládání do databáze redakčního systému s možností exportu do CSV/Excelu.
+
+Struktura databází:
+
+Záložka / Databáze ŠKOLY: Kompletní seznam škol, kontaktů, typu akce (sbírka vs. výzva), přiřazeného útulku a odkazů na nahrané fotky.
+
+Záložka / Databáze ÚTULKY: Kompletní přehled registrovaných útulků, jejich kapacit, kontaktů a stavu doručení pomoci.
+
+dob 14 dnů doplnění loga partnerů
+
+Dejte mi prosím vědět, zda je takto zadání srozumitelné, případně jaký časový odhad realizace předpokládáte.
+
+Moc děkuji a těším se na spolupráci!
+
+S pozdravem,
+
+Kristýna
+
+Tlapkám z.s. / Školy Tlapkám
