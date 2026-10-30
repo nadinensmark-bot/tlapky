@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Školy Tlapkám</title>
-<meta name="description" content="Školy Tlapkám propojují školy a útulky. Vánoční sbírka a Vánoční tlapková výzva pro školy po celé České republice.">
+<meta name="description" content="Školy pomáhají útulkům. Vánoční sbírka a Vánoční tlapková výzva pro školy po celé České republice.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap">
@@ -13,12 +13,12 @@
 <body>
 <header class="nav">
   <div class="nav-in">
-    <a class="brand" href="index.html" aria-label="Školy Tlapkám, domů"><svg viewBox="0 0 48 48" fill="currentColor" aria-hidden="true"><ellipse cx="14" cy="15" rx="5" ry="6.5"/><ellipse cx="24.5" cy="11" rx="5.2" ry="7"/><ellipse cx="35" cy="15" rx="5" ry="6.5"/><ellipse cx="42" cy="24" rx="4.3" ry="5.6"/><path d="M24 20c7 0 13 5 13 11 0 5-5 8-13 8s-13-3-13-8c0-6 6-11 13-11z"/></svg><span>TLAPKÁM<small>Školy Tlapkám</small></span></a>
+    <a class="brand" href="index.html" aria-label="Školy Tlapkám, úvod"><svg viewBox="0 0 48 48" fill="currentColor" aria-hidden="true"><ellipse cx="14" cy="15" rx="5" ry="6.5"/><ellipse cx="24.5" cy="11" rx="5.2" ry="7"/><ellipse cx="35" cy="15" rx="5" ry="6.5"/><ellipse cx="42" cy="24" rx="4.3" ry="5.6"/><path d="M24 20c7 0 13 5 13 11 0 5-5 8-13 8s-13-3-13-8c0-6 6-11 13-11z"/></svg><span>TLAPKÁM<small>Školy Tlapkám</small></span></a>
     <button class="burger" aria-label="Menu" onclick="document.getElementById('menu').classList.toggle('open')">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
     </button>
     <nav class="menu" id="menu">
-      <a href="index.html" class="active">O projektu</a><a href="pro-skoly.html">Pro školy</a><a href="pro-utulky.html">Pro útulky</a><a href="ke-stazeni.html">Ke stažení</a><a href="kontakt.html">Kontakt</a>
+      <a href="index.html" class="active">Úvod</a><a href="pro-skoly.html">Pro školy</a><a href="pro-utulky.html">Pro útulky</a><a href="petboxy.html">PetBoxy</a><a href="ke-stazeni.html">Ke stažení</a><a href="kontakt.html">O nás & Kontakt</a>
       <a class="btn sm" href="pro-skoly.html">Zapojit školu <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </nav>
   </div>
@@ -29,36 +29,38 @@
   <div class="wrap">
     <div class="hero">
       <div>
-        <span class="eyebrow">Školy Tlapkám · Tlapkám z.s.</span>
-        <h1>Společně pomáháme zvířatům</h1>
-        <p class="lead">Vzděláváme, spojujeme a podporujeme školy a útulky. Protože i malá pomoc má velký smysl.</p>
+        <span class="eyebrow">Školy Tlapkám · Tlapkám z. s.</span>
+        <h1>Školy pomáhají útulkům</h1>
+        <p class="lead">Zapojte se do Vánoční sbírky nebo do Vánoční tlapkové výzvy a pomáhejte se školou ve svém okolí.</p>
         <div class="hero-cta">
           <a class="btn" href="pro-skoly.html">Zapojit školu <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           <a class="btn ghost" href="ke-stazeni.html">Podklady ke stažení</a>
         </div>
       </div>
-      <div class="hero-art">
-        <svg class="pawbg" viewBox="0 0 400 320" fill="currentColor" aria-hidden="true"><ellipse cx="60" cy="70" rx="16" ry="21"/><ellipse cx="95" cy="48" rx="16" ry="22"/><ellipse cx="330" cy="250" rx="15" ry="20"/><ellipse cx="362" cy="228" rx="15" ry="21"/></svg>
-        <img class="hero-logo" src="assets/logo-skoly.png" alt="Školy Tlapkám">
+      <div class="hero-photo">
+        <img src="assets/hero-sbirka.jpg" alt="Děti z jedné ze škol u sbírky krmiva a pamlsků pro útulek, s cedulkami Školy Tlapkám">
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="cards">
-      <a class="card" href="pro-skoly.html">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M5 21V7h14v14M9 21v-4h6v4M9 11h.01M15 11h.01M12 3l7 4H5z"/></svg>
-        <h3>Pro školy</h3><p>Zapojte se do Vánoční sbírky nebo Tlapkové výzvy a pomáhejte se školou útulkům ve svém okolí.</p>
-        <div class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-      </a>
-      <a class="card" href="pro-utulky.html">
-        <svg class="ico" viewBox="0 0 48 48" fill="currentColor"><ellipse cx="14" cy="15" rx="4.6" ry="6"/><ellipse cx="24.5" cy="11.5" rx="4.8" ry="6.4"/><ellipse cx="35" cy="15" rx="4.6" ry="6"/><path d="M24 19c6.5 0 12 4.6 12 10 0 4.6-4.6 7.4-12 7.4S12 33.6 12 29c0-5.4 5.5-10 12-10z"/></svg>
-        <h3>Pro útulky</h3><p>Zaregistrujte útulek, azyl nebo depozitum a získejte materiální pomoc od škol.</p>
-        <div class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-      </a>
-      <a class="card" href="ke-stazeni.html">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9z"/><path d="M14 3v6h6M12 12v6M9 15l3 3 3-3"/></svg>
-        <h3>Ke stažení</h3><p>Plakáty, dopis pro rodiče, pracovní listy, návody a diplomy. Volně, bez registrace.</p>
-        <div class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-      </a>
+<section class="tight">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Dvě cesty pro školy</span><h2>Vyberte si, jak se zapojíte</h2></div>
+    <div class="two">
+      <div class="act">
+        <div class="act-top"><span class="tag">MOŽNOST A</span><span class="deadline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>do 15. ledna</span></div>
+        <h3>Vánoční materiální sbírka</h3>
+        <p>Uspořádejte na své škole sbírku krmiva a pamlsků a společně s dětmi ji osobně odvezte do útulku ve vašem okolí.</p>
+        <div class="prize"><b>Soutěž o 5 000 Kč</b> Škola, která vybere nejvíce pamlsků a dobrot pro útulky, získá odměnu 5 000 Kč na libovolný školní výlet!</div>
+        <div class="actions"><a class="btn" href="pro-skoly.html#sbirka">Jak na sbírku <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+      </div>
+      <div class="act">
+        <div class="act-top"><span class="tag">MOŽNOST B</span><span class="deadline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>do 16. prosince</span></div>
+        <h3>Vánoční tlapková výzva</h3>
+        <p>Nemáte v okolí útulek? Splňte se školou 6 zábavných adventních úkolů přímo ve výuce a nahrajte fotky. Za každý splněný list pošlou naši partneři útulku balíček pamlsků a krmiva.</p>
+        <div class="actions"><a class="btn" href="pro-skoly.html#vyzva">Jak na výzvu <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+      </div>
     </div>
   </div>
 </section>
@@ -69,30 +71,32 @@
       <span class="eyebrow" style="color:var(--yellow)">Jak to funguje</span>
       <h2>Tři kroky, žádná zbytečná administrativa</h2>
       <div class="steps">
-        <div><span class="num">KROK 01</span><h4>Stáhněte si podklady</h4><p>Plakát, dopis rodičům nebo To-Do list s úkoly. Bez registrace, rovnou k tisku.</p></div>
-        <div><span class="num">KROK 02</span><h4>Splňte to se školou</h4><p>Uspořádejte sbírku krmiva a potřeb, nebo projděte 6 edukačních úkolů Tlapkové výzvy.</p></div>
-        <div><span class="num">KROK 03</span><h4>Odevzdejte jedním formulářem</h4><p>Údaje o škole a fotky nahrajete najednou, bez zbytečné administrativy. Pomoc putuje do útulků.</p></div>
+        <div><span class="num">KROK 01</span><h4>Stáhněte si podklady</h4><p>Plakát, dopis rodičům, cedulky nebo To-Do list. Zdarma a bez registrace.</p></div>
+        <div><span class="num">KROK 02</span><h4>Pomáhejte se školou</h4><p>Uspořádejte sbírku a odvezte ji do útulku, nebo splňte 6 adventních úkolů výzvy.</p></div>
+        <div><span class="num">KROK 03</span><h4>Nahrajte fotky</h4><p>Vyplňte krátký formulář a nahrajte fotky. Zapojíte se do soutěže a pomoc dorazí ke zvířatům.</p></div>
       </div>
     </div>
   </div>
 </section>
 
-<section>
+<section class="tight">
   <div class="wrap">
-    <div class="sec-head"><span class="eyebrow">Dvě aktivity pro školy</span><h2>Vyberte si, jak se zapojíte</h2></div>
-    <div class="two">
-      <div class="act">
-        <span class="tag">MATERIÁLNÍ SBÍRKA</span>
-        <h3>Vánoční sbírka</h3>
-        <p>Škola uspořádá sbírku krmiva a potřeb pro vybraný útulek. Dodáme plakát na nástěnku, dopis pro rodiče i cedulky na sběrné krabice.</p>
-        <div class="actions"><a class="btn" href="formular-sbirka.html">Přihlásit školu <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn ghost" href="ke-stazeni.html#sbirka">Podklady</a></div>
-      </div>
-      <div class="act">
-        <span class="tag">UČÍME SE PRO ÚTULKY</span>
-        <h3>Vánoční tlapková výzva</h3>
-        <p>Spojte výuku s dobrým skutkem. Škola splní 6 zábavných edukačních úkolů o zvířatech, ohleduplnosti a prevenci proti týrání a získá diplom. Hotovo odevzdáte jedním formulářem s fotkami.</p>
-        <div class="actions"><a class="btn" href="formular-vyzva.html">Máme hotovo! <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn ghost" href="ke-stazeni.html#vyzva">Podklady</a></div>
-      </div>
+    <div class="cards">
+      <a class="card" href="pro-utulky.html">
+        <svg class="ico" viewBox="0 0 48 48" fill="currentColor"><ellipse cx="14" cy="15" rx="4.6" ry="6"/><ellipse cx="24.5" cy="11.5" rx="4.8" ry="6.4"/><ellipse cx="35" cy="15" rx="4.6" ry="6"/><path d="M24 19c6.5 0 12 4.6 12 10 0 4.6-4.6 7.4-12 7.4S12 33.6 12 29c0-5.4 5.5-10 12-10z"/></svg>
+        <h3>Pro útulky</h3><p>Jste ověřený útulek nebo azyl? Zaregistrujte se a propojíme vás se školami v okolí.</p>
+        <div class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </a>
+      <a class="card" href="petboxy.html">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 9l8-5 8 5v11H4z"/><path d="M4 13h16M9 17h.01M15 17h.01"/></svg>
+        <h3>PetBoxy <span class="soon">PŘIPRAVUJEME</span></h3><p>Celoroční sběrná místa krmiva ve školách, obchodních centrech a veřejných institucích.</p>
+        <div class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </a>
+      <a class="card" href="ke-stazeni.html">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9z"/><path d="M14 3v6h6M12 12v6M9 15l3 3 3-3"/></svg>
+        <h3>Ke stažení</h3><p>Plakáty, dopis pro rodiče, cedulky na krabice a To-Do list výzvy. Volně k tisku.</p>
+        <div class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </a>
     </div>
   </div>
 </section>
@@ -102,7 +106,7 @@
     <div class="partners">
       <span class="lab">Partneři projektu</span>
       <div class="slot">logo partnera</div><div class="slot">logo partnera</div><div class="slot">logo partnera</div>
-      <span class="muted" style="font-size:.82rem">Loga partnerů doplňujeme.</span>
+      <span class="muted" style="font-size:.82rem">Loga partnerů doplníme do 8. listopadu.</span>
     </div>
   </div>
 </section>
@@ -111,17 +115,17 @@
   <div class="fin">
     <div>
       <div class="brand2"><svg viewBox="0 0 48 48" fill="currentColor" aria-hidden="true"><ellipse cx="14" cy="15" rx="5" ry="6.5"/><ellipse cx="24.5" cy="11" rx="5.2" ry="7"/><ellipse cx="35" cy="15" rx="5" ry="6.5"/><ellipse cx="42" cy="24" rx="4.3" ry="5.6"/><path d="M24 20c7 0 13 5 13 11 0 5-5 8-13 8s-13-3-13-8c0-6 6-11 13-11z"/></svg> TLAPKÁM</div>
-      <div class="tag">Společně pomáháme zvířatům. 🤍</div>
+      <div class="tag">Školy pomáhají útulkům. 🤍</div>
     </div>
     <div style="display:flex;gap:22px;flex-wrap:wrap">
       <a href="pro-skoly.html">Pro školy</a>
       <a href="pro-utulky.html">Pro útulky</a>
+      <a href="petboxy.html">PetBoxy</a>
       <a href="ke-stazeni.html">Ke stažení</a>
-      <a href="kontakt.html">Kontakt</a>
+      <a href="kontakt.html">O nás & Kontakt</a>
     </div>
-    <div class="legal">Tlapkám z.s. · Školy Tlapkám · Údaje z formulářů nejsou veřejné a slouží pouze k organizaci projektu.</div>
+    <div class="legal">Tlapkám z. s. · IČO 30204941 · Svobodova 205/16, 362 25 Nová Role · <a href="mailto:info@tlapkam.cz">info@tlapkam.cz</a></div>
   </div>
 </footer>
-<div class="proto">Pracovní verze webu · obsah a soubory ke stažení doplňujeme podle podkladů od Tlapkám z.s.</div>
 </body>
 </html>

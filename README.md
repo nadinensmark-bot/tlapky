@@ -41,23 +41,6 @@ Klient: Kristýna, Tlapkám z.s. Realizace: Nadine Sokolová.
 
 Formulář #2 má upload 1 až 6 souborů (fotky, PDF, ZIP, max 10 MB/soubor) a dva souhlasy (fotky dětí + GDPR). **Útulek se ve výzvě nevybírá** (upřesnění klienta 25. 10.: příjemce pomoci z výzvy vybírá Tlapkám z.s. interně). Útulek si škola volí jen ve formuláři #1 (sbírka), kde ho zadává textem.
 
-### Seznam útulků z registrací (připraveno, zatím nepoužito)
-
-Pokud by klient chtěl, aby si školy ve formuláři #1 vybíraly útulek ze seznamu schválených útulků (místo ručního zadání), je to hotové v `assets/utulky.js` + `assets/utulky.json` a stačí to zapnout na `formular-sbirka.html`. Tally dropdown se neumí sám plnit, proto výběr dělá stránka webu a do Tally jde jako skryté pole. Tok:
-
-1. Útulek se zaregistruje formulářem #3 → Tally ho zapíše do Google tabulky, list **ÚTULKY**.
-2. V listu ÚTULKY je sloupec **Schváleno** (zaškrtávací políčko). Kristýna ho u ověřeného útulku zaškrtne. To je jediný ruční krok a zadání ho chce („schválené útulky").
-3. Druhý list **verejny_seznam** obsahuje jen název a kraj schválených útulků, vzorec v buňce A1:
-   `=FILTER({ÚTULKY!B:B; ÚTULKY!F:F}; ÚTULKY!M:M=TRUE)` (písmena sloupců upravit podle skutečné tabulky: název, kraj, Schváleno).
-4. Soubor → Sdílet → **Publikovat na web** → vybrat list `verejny_seznam` → formát **CSV** → zkopírovat URL.
-5. URL vložit do `assets/utulky.js` do `UTULKY_CSV_URL` a skript připojit na stránku s formulářem #1. Web pak načítá seznam živě při každém otevření stránky. Veřejně je vidět jen název a kraj, kontakty a kapacity zůstávají v soukromé tabulce.
-
-## Obsah od klienta (stav 25. 10. večer)
-
-Dodáno a zapracováno: texty O nás (příběh zakladatelky), Pro školy (Možnost A / B s postupem), Pro útulky (výhody zapojení). Změny: všude „škola" místo „třída", čichací kobereček zrušen (i jako soubor ke stažení), výzva bez výběru útulku.
-
-Stále chybí: soubory ke stažení (5 položek), kontaktní údaje (e-mail, telefon, IČO, sídlo), logo ve vektoru, loga partnerů, doména, Google účet spolku, GDPR text.
-
 ### Co je potřeba kliknout ručně v Tally (nejde přes API)
 
 1. **Integrations → Google Sheets** u každého ze tří formulářů: propojit s tabulkou na Google účtu Tlapkám z.s. (ne na soukromém účtu). Formuláře #1 a #2 do listu ŠKOLY, #3 do listu ÚTULKY.
@@ -76,3 +59,12 @@ GitHub Pages: Settings → Pages → Source „Deploy from a branch", branch `ma
 ## Lokálně
 
 Otevřít `index.html` v prohlížeči. Vložené formuláře potřebují internet.
+## Obsah od klienta (stav 30. 10. 2026)
+
+Zapracováno: kontakty spolku (Tlapkám z. s., IČO 30204941, Svobodova 205/16, 362 25 Nová Role, info@tlapkam.cz), O nás „Příběh, který začal u katedry", hero „Školy pomáhají útulkům" s fotkou sbírky, Pro školy (A: sbírka do 15. 1. + soutěž o 5 000 Kč, B: výzva do 16. 12.), Pro útulky, nová stránka PetBoxy (připravujeme), diplom zrušen.
+
+Formuláře: #1 sbírka = škola, adresa, učitel, kontakt, vybraný útulek, upload až 3 fotek + souhlas se zveřejněním. #2 výzva = škola, kontakt, upload až 6 souborů + souhlas se zveřejněním. #3 útulky = doplněn bankovní účet (nepovinné) a druh přijímané pomoci.
+
+Fotky z formulářů: Tally je ukládá u odpovědi a při napojení na Google Sheets zapíše do sloupce klikatelný odkaz na soubor. Žádné vlastní úložiště není potřeba.
+
+Stále chybí: soubory ke stažení (4 položky, slíbeno do 8. 11.), loga partnerů (do 8. 11.), funkční odkazy na Google tabulky (v podkladech přišly zkrácené), logo ve vektoru, doména.

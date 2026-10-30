@@ -155,3 +155,40 @@ footer .legal{width:100%;font-size:.76rem;opacity:.65;margin-top:8px}
 }
 @media (max-width:560px){ .dl-list{grid-template-columns:1fr} }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ===== Kolo 30. 10.: hero foto, termíny, soutěž, feature bloky, PetBoxy, O nás ===== */
+.hero-photo{border-radius:28px;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:1/1;max-height:520px}
+.hero-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.act-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.deadline{display:inline-flex;align-items:center;gap:6px;background:var(--navy);color:var(--cream);font-family:var(--f-display);font-weight:600;font-size:.74rem;letter-spacing:.04em;padding:5px 11px;border-radius:999px}
+.deadline svg{width:14px;height:14px}
+.prize{background:var(--yellow-soft);border:1.5px solid var(--yellow);border-radius:var(--radius-sm);padding:14px 16px;font-size:.94rem}
+.prize b{display:block;font-family:var(--f-display);color:var(--navy);font-size:1.05rem;margin-bottom:2px}
+.soon{font-size:.6rem;letter-spacing:.08em;background:var(--yellow);color:var(--navy-deep);border-radius:6px;padding:2px 6px;margin-left:6px;font-weight:700;vertical-align:middle;font-family:var(--f-display)}
+.soon-badge{display:inline-block;background:var(--navy);color:var(--cream);font-family:var(--f-display);font-weight:700;font-size:.72rem;letter-spacing:.12em;padding:7px 15px;border-radius:999px}
+.feature{display:grid;grid-template-columns:1.2fr .8fr;gap:36px;align-items:start;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow)}
+.feature.reverse{grid-template-columns:.8fr 1.2fr}
+.feature.reverse .feature-img{order:-1}
+.feature-text{display:flex;flex-direction:column;gap:14px;min-width:0}
+.feature-text h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:700}
+.feature-img{margin:0}
+.feature-img img{width:100%;border-radius:var(--radius-sm);border:1px solid var(--line);display:block}
+.feature-img figcaption,.pb-img figcaption{font-size:.78rem;color:var(--muted);margin-top:8px;text-align:center}
+.steps-list{margin:0;padding-left:20px;font-size:.95rem}
+.steps-list li{margin-bottom:6px}
+.pb-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.pb-img{margin:0}
+.pb-img img{width:100%;border-radius:var(--radius);box-shadow:var(--shadow);display:block}
+.about-h{font-size:1.35rem;font-weight:700;margin-top:26px}
+.pillars{margin:10px 0 0;padding-left:20px}
+.pillars li{margin-bottom:10px}
+.quote{margin-top:20px;border-left:3px solid var(--yellow);padding:6px 0 6px 16px;font-family:var(--f-display);font-weight:600;color:var(--navy);font-size:1.08rem}
+.contact-box a{color:var(--navy)}
+footer .legal a{color:#C9D6E2}
+@media (max-width:860px){
+  .feature,.feature.reverse,.pb-grid{grid-template-columns:1fr}
+  .feature.reverse .feature-img{order:0}
+  .feature{padding:22px}
+  .hero-photo{order:-1;aspect-ratio:4/3}
+}
+.feature .tag{align-self:flex-start;background:var(--yellow);color:var(--navy-deep);font-family:var(--f-display);font-weight:700;font-size:.66rem;letter-spacing:.1em;padding:5px 10px;border-radius:7px}
