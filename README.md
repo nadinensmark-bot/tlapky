@@ -68,3 +68,11 @@ Formuláře: #1 sbírka = škola, adresa, učitel, kontakt, vybraný útulek, up
 Fotky z formulářů: Tally je ukládá u odpovědi a při napojení na Google Sheets zapíše do sloupce klikatelný odkaz na soubor. Žádné vlastní úložiště není potřeba.
 
 Stále chybí: soubory ke stažení (4 položky, slíbeno do 8. 11.), loga partnerů (do 8. 11.), funkční odkazy na Google tabulky (v podkladech přišly zkrácené), logo ve vektoru, doména.
+
+## Změny 3. 11. 2026
+
+- Ke stažení jen 2 PDF: `assets/downloads/skoly-tlapkam-vanocni-sbirka.pdf` (balíček ke sbírce) a `assets/downloads/skoly-tlapkam-to-do-list.pdf`.
+- Výzva přejmenována na **Učíme se pro útulky**, 4 adventní úkoly (místo 6), nový náhled To-Do listu.
+- Formulář #2 (Tally `q55ZEG`): nahrává se **jen 1 soubor** (fotka nebo PDF vyplněného To-Do listu), publikováno.
+- Partner DogMama (`assets/partneri/dogmama.png`) na úvodu a u výzvy. Instagram @skolytlapkam v patičce, kontaktu a galerii.
+- Úvod: sekce **Fotografie ze sbírek** (`#fotky`). Fotky přidávat do `assets/galerie/` a do `index.html` místo placeholderů.
