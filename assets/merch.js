@@ -1,10 +1,10 @@
 /* Merch Tlapkám: katalog + košík.
-   Košík žije jen v prohlížeči zákazníka (localStorage). Objednávka a platba
-   probíhá v Tally formuláři (dbN2bA) s platbou kartou přes Stripe.
+   Košík žije jen v prohlížeči zákazníka (localStorage). Objednávka se odesílá
+   přes Tally formulář (dbN2bA), platba převodem / QR na stránce merch-platba.html.
+   Nastavení (spuštění, číslo účtu) je v assets/obchod-config.js.
    Ceny jsou uvedené tady i v Tally (výpočet ceny). Při změně ceny upravit obojí! */
 
-/* Přepnout na true, až bude ve formuláři připojený Stripe a formulář publikovaný. */
-const OBJEDNAVKY_SPUSTENY = false;
+const OBJEDNAVKY_SPUSTENY = !!(window.OBCHOD && window.OBCHOD.OBJEDNAVKY_SPUSTENY);
 const TALLY_FORM = 'dbN2bA';
 
 const PRODUKTY = [
@@ -119,7 +119,7 @@ function vykresliKosik(){
     <div class="kosik-celkem"><span>Celkem za zboží</span><b>${kc(celkem)}</b></div>
     <p class="muted small">Způsob doručení zvolíte v objednávce.</p>
     ${OBJEDNAVKY_SPUSTENY
-      ? `<a class="btn" href="${objednavkaUrl()}">Objednat a zaplatit kartou</a>`
+      ? `<a class="btn" href="#" data-objednat>Objednat</a>`
       : `<span class="btn disabled" aria-disabled="true">Předprodej brzy spustíme</span>`}`;
 }
 
@@ -127,7 +127,8 @@ function objednavkaUrl(){
   const pocty = { damske:0, panske:0, set:0, cepice:0, chlupy:0, zvirata:0 };
   kosik.forEach(r => pocty[r.id] += r.ks);
   const polozky = kosik.map(r => `${r.ks}× ${popisPolozky(r)}`).join('\n');
-  const q = new URLSearchParams({ ...pocty, polozky });
+  const vs = String(Date.now()).slice(-10); // číslo objednávky = variabilní symbol
+  const q = new URLSearchParams({ ...pocty, polozky, vs });
   return `merch-objednavka.html?${q.toString()}`;
 }
 
@@ -139,6 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
   vykresliKatalog(); vykresliKosik();
   $('#kosik').addEventListener('click', e => {
     if (e.target.dataset.odebrat !== undefined){ kosik.splice(+e.target.dataset.odebrat, 1); uloz(); vykresliKosik(); }
+    if (e.target.hasAttribute('data-objednat')){ e.preventDefault(); location.href = objednavkaUrl(); }
   });
   $('#tabulka-dialog').addEventListener('click', e => { if (e.target.matches('dialog, [data-zavrit]')) e.currentTarget.close(); });
 });
