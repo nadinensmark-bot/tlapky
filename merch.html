@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Merch · Školy Tlapkám</title>
+<meta name="description" content="Merch Tlapkám: trička a čepice s výšivkou. 1 nákup = jeden útulkáč.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="index.html" aria-label="Školy Tlapkám, úvod"><svg viewBox="0 0 48 48" fill="currentColor" aria-hidden="true"><ellipse cx="14" cy="15" rx="5" ry="6.5"/><ellipse cx="24.5" cy="11" rx="5.2" ry="7"/><ellipse cx="35" cy="15" rx="5" ry="6.5"/><ellipse cx="42" cy="24" rx="4.3" ry="5.6"/><path d="M24 20c7 0 13 5 13 11 0 5-5 8-13 8s-13-3-13-8c0-6 6-11 13-11z"/></svg><span>TLAPKÁM<small>Školy Tlapkám</small></span></a>
+    <button class="burger" aria-label="Menu" onclick="document.getElementById('menu').classList.toggle('open')">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <nav class="menu" id="menu">
+      <a href="index.html">Úvod</a><a href="pro-skoly.html">Pro školy</a><a href="pro-utulky.html">Pro útulky</a><a href="petboxy.html">PetBoxy</a><a href="merch.html" class="active">Merch</a><a href="ke-stazeni.html">Ke stažení</a><a href="kontakt.html">O nás & Kontakt</a>
+      <a class="btn sm" href="pro-skoly.html">Zapojit školu <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </nav>
+  </div>
+</header>
+<main>
+
+<section class="page-head">
+  <div class="wrap">
+    <span class="eyebrow">Merch Tlapkám · předprodej</span>
+    <h1>V mé hlavě i v mém srdci. Napořád. 🐾</h1>
+    <p class="merch-claim">1 NÁKUP = JEDEN ÚTULKÁČ</p>
+    <p>Každým kouskem z naší kolekce posíláš krmivo a péči konkrétnímu zvířeti v nouzi. Ve spolupráci s <a href="https://www.hadrkerka.cz" target="_blank" rel="noopener"><b>Hadrkerka</b></a> ti přinášíme prémiový textil s poctivou výšivkou, která vydrží roky. Podpoř útulky po celé České republice a nos svůj postoj hrdě!</p>
+  </div>
+</section>
+<section class="tight">
+  <div class="wrap merch-layout">
+    <div class="prod-grid" id="produkty"></div>
+    <aside class="kosik-box" aria-label="Košík">
+      <h3>Košík <span class="kosik-badge" id="kosik-pocet">0</span></h3>
+      <div id="kosik"></div>
+      <p class="muted small" style="margin-top:14px">Platba kartou proběhne bezpečně přes Stripe. Jde o předprodej, kusy vyrábíme a posíláme po uzavření objednávek.</p>
+    </aside>
+  </div>
+</section>
+<dialog id="tabulka-dialog" class="tab-dialog">
+  <button type="button" class="tab-close" data-zavrit aria-label="Zavřít">×</button>
+  <img src="" alt="Tabulka velikostí Hadrkerka, údaje v cm">
+</dialog>
+<script src="assets/merch.js"></script>
+</main>
+<footer>
+  <div class="fin">
+    <div>
+      <div class="brand2"><svg viewBox="0 0 48 48" fill="currentColor" aria-hidden="true"><ellipse cx="14" cy="15" rx="5" ry="6.5"/><ellipse cx="24.5" cy="11" rx="5.2" ry="7"/><ellipse cx="35" cy="15" rx="5" ry="6.5"/><ellipse cx="42" cy="24" rx="4.3" ry="5.6"/><path d="M24 20c7 0 13 5 13 11 0 5-5 8-13 8s-13-3-13-8c0-6 6-11 13-11z"/></svg> TLAPKÁM</div>
+      <div class="tag">Školy pomáhají útulkům. 🤍</div>
+    </div>
+    <div style="display:flex;gap:22px;flex-wrap:wrap">
+      <a href="pro-skoly.html">Pro školy</a>
+      <a href="pro-utulky.html">Pro útulky</a>
+      <a href="petboxy.html">PetBoxy</a>
+      <a href="merch.html">Merch</a>
+      <a href="ke-stazeni.html">Ke stažení</a>
+      <a href="kontakt.html">O nás & Kontakt</a>
+      <a class="ig" href="https://www.instagram.com/skolytlapkam/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@skolytlapkam</a>
+    </div>
+    <div class="legal">Tlapkám z. s. · IČO 30204941 · Svobodova 205/16, 362 25 Nová Role · <a href="mailto:info@tlapkam.cz">info@tlapkam.cz</a></div>
+  </div>
+</footer>
+</body>
+</html>

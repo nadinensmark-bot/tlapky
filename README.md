@@ -76,3 +76,11 @@ Stále chybí: soubory ke stažení (4 položky, slíbeno do 8. 11.), loga partn
 - Formulář #2 (Tally `q55ZEG`): nahrává se **jen 1 soubor** (fotka nebo PDF vyplněného To-Do listu), publikováno.
 - Partner DogMama (`assets/partneri/dogmama.png`) na úvodu a u výzvy. Instagram @skolytlapkam v patičce, kontaktu a galerii.
 - Úvod: sekce **Fotografie ze sbírek** (`#fotky`). Fotky přidávat do `assets/galerie/` a do `index.html` místo placeholderů.
+
+## Merch e-shop (6. 11. 2026)
+
+- `merch.html`: 6 produktů z podkladů 4. 11. (dámské / pánské tričko s výšivkou, partnerský set, čepice, 2× oversize s potiskem), fotky v `assets/merch/`, tabulky velikostí Hadrkerka (dámské XS–2XL, pánské S–3XL, oversize set XS–3XL).
+- Košík: `assets/merch.js` (jen v prohlížeči). Tlačítko vede na `merch-objednavka.html`, která vloží Tally formulář `dbN2bA` a předá počty kusů + popis položek jako hidden fields.
+- Tally `dbN2bA` počítá cenu sám (690 / 690 / 1490 / 590 / 690 / 690 Kč) a platbu bere kartou přes Stripe. **Ceny jsou na dvou místech: `merch.js` a výpočet v Tally.**
+- Spuštění: v Tally připojit Stripe účet spolku k platebnímu bloku, publikovat formulář, v `merch.js` přepnout `OBJEDNAVKY_SPUSTENY = true`.
+- Chybí: obchodní podmínky + reklamační řád (formulář na ně odkazuje), cena a způsob dopravy, tabulka velikostí oversize s potiskem, termín dodání předprodeje.
