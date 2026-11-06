@@ -1,6 +1,6 @@
 /* Merch Tlapkám: katalog + košík.
    Košík žije jen v prohlížeči zákazníka (localStorage). Objednávka se odesílá
-   přes Tally formulář (dbN2bA), platba převodem / QR na stránce merch-platba.html.
+   přes Tally formulář (dbN2bA), platba převodem / QR na stránce /merch-platba.
    Nastavení (spuštění, číslo účtu) je v assets/obchod-config.js.
    Ceny jsou uvedené tady i v Tally (výpočet ceny). Při změně ceny upravit obojí! */
 
@@ -129,7 +129,7 @@ function objednavkaUrl(){
   const polozky = kosik.map(r => `${r.ks}× ${popisPolozky(r)}`).join('\n');
   const vs = String(Date.now()).slice(-10); // číslo objednávky = variabilní symbol
   const q = new URLSearchParams({ ...pocty, polozky, vs });
-  return `merch-objednavka.html?${q.toString()}`;
+  return `/merch-objednavka?${q.toString()}`;
 }
 
 function otevriTabulku(t){
