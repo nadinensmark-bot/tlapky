@@ -43,3 +43,10 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{DOCUMENT_ROOT}/$1.html -f
 RewriteRule ^([a-z0-9-]+)$ $1.html [L]
+
+# --- Tlapkám: stránky si prohlížeč vždy ověří u serveru (žádná stará verze z mezipaměti) ---
+<IfModule mod_headers.c>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
