@@ -84,3 +84,13 @@ Stále chybí: soubory ke stažení (4 položky, slíbeno do 8. 11.), loga partn
 - Tally `dbN2bA` počítá cenu sám (690 / 690 / 1490 / 590 / 690 / 690 Kč) a platbu bere kartou přes Stripe. **Ceny jsou na dvou místech: `merch.js` a výpočet v Tally.**
 - Spuštění: v Tally připojit Stripe účet spolku k platebnímu bloku, publikovat formulář, v `merch.js` přepnout `OBJEDNAVKY_SPUSTENY = true`.
 - Chybí: obchodní podmínky + reklamační řád (formulář na ně odkazuje), cena a způsob dopravy, tabulka velikostí oversize s potiskem, termín dodání předprodeje.
+
+## Obchod: převod + QR (6. 11. 2026, večer)
+
+- Platba kartou (Stripe) odložena. Formulář `dbN2bA` už platbu neobsahuje, po odeslání přesměruje na `merch-platba.html?vs=…&castka=…`.
+- `assets/obchod-config.js`: `OBJEDNAVKY_SPUSTENY` (zapíná tlačítko Objednat) a `UCET` (číslo účtu spolku). Bez účtu stránka ukáže „pošleme e-mailem“.
+- Variabilní symbol = číslo objednávky (10 číslic), vzniká v košíku a ukládá se v Tally jako hidden field `vs`. Bez VS formulář nejde odeslat.
+- QR Platba (SPD) se generuje v prohlížeči (`assets/qrcode.js`, MIT, Kazuhiko Arase).
+- Doprava: jen osobní převzetí. Volba „Zaslat na adresu“ je v Tally skrytá, odkrýt po doplnění ceny.
+- `obchodni-podminky.html`: NÁVRH s místy [DOPLNIT], před spuštěním odsouhlasit spolkem.
+- Hosting: WEDOS webhosting tlapkam.cz, soubory v `/www` (nahrávání přes WebFTP, zip se rozbalí).
