@@ -205,3 +205,45 @@ footer a.ig svg,.contact-box .line a+svg{width:16px;height:16px}
 .gallery img{width:100%;height:100%;object-fit:cover;display:block}
 .gallery figure.ph{display:grid;place-items:center;border-style:dashed;background:transparent;color:var(--muted);font-size:.8rem;text-align:center}
 @media (max-width:860px){.gallery{grid-template-columns:repeat(2,1fr)}}
+
+/* Merch (6. 11.) */
+.merch-claim{font-family:var(--f-display);font-weight:800;letter-spacing:.06em;color:var(--navy)!important;font-size:1.1rem!important;margin-top:8px!important}
+.merch-layout{display:grid;grid-template-columns:1fr 320px;gap:26px;align-items:start}
+.prod-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.prod{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.prod-foto{position:relative;aspect-ratio:4/5;background:var(--panel-2)}
+.prod-foto img{width:100%;height:100%;object-fit:cover;display:block}
+.prod-stitek{position:absolute;top:12px;left:12px;background:var(--yellow);color:var(--navy-deep);font-family:var(--f-display);font-weight:700;font-size:.66rem;letter-spacing:.08em;padding:5px 10px;border-radius:7px;text-transform:uppercase}
+.prod-thumbs{position:absolute;bottom:12px;left:0;right:0;display:flex;justify-content:center;gap:8px}
+.prod-thumbs button{width:10px;height:10px;border-radius:99px;border:1.5px solid #fff;background:rgba(255,255,255,.45);cursor:pointer;padding:0}
+.prod-thumbs button.on{background:#fff}
+.prod-body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
+.prod-body h3{font-size:1.08rem;font-weight:700}
+.prod-cena{font-family:var(--f-display);font-weight:700;color:var(--navy);font-size:1.1rem}
+.prod-body p{font-size:.88rem;color:var(--muted)}
+.prod-volby{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pv{display:flex;flex-direction:column;gap:4px;font-size:.74rem;color:var(--muted);font-weight:600}
+.pv select,.pv input{font:inherit;font-size:.9rem;color:var(--ink);font-weight:500;padding:9px 10px;border:1.5px solid var(--line);border-radius:10px;background:#fff;min-width:0}
+.prod-akce{margin-top:auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding-top:6px}
+.linkbtn{background:none;border:0;padding:0;color:var(--navy);text-decoration:underline;cursor:pointer;font:inherit;font-size:.86rem}
+.small{font-size:.8rem}
+.kosik-box{position:sticky;top:90px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+.kosik-box h3{font-size:1.15rem;display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.kosik-badge{background:var(--navy);color:var(--cream);border-radius:99px;font-size:.72rem;padding:2px 9px}
+.kosik-list{list-style:none;margin:0 0 12px;padding:0;display:flex;flex-direction:column;gap:10px}
+.kosik-list li{display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:start;font-size:.86rem;border-bottom:1px solid var(--line);padding-bottom:10px}
+.kosik-list button{background:none;border:0;color:var(--muted);cursor:pointer;font-size:1.1rem;line-height:1}
+.kosik-celkem{display:flex;justify-content:space-between;font-family:var(--f-display);color:var(--navy);margin:6px 0}
+.kosik-box .btn{width:100%;justify-content:center;margin-top:10px}
+.btn.disabled{background:var(--panel-2);border-color:var(--line);color:var(--muted);cursor:default}
+.btn.disabled:hover{transform:none;background:var(--panel-2)}
+.tab-dialog{border:0;border-radius:var(--radius);padding:0;max-width:min(92vw,760px);box-shadow:var(--shadow)}
+.tab-dialog::backdrop{background:rgba(21,46,74,.55)}
+.tab-dialog img{display:block;width:100%;height:auto}
+.tab-close{position:absolute;top:8px;right:10px;background:#fff;border:1px solid var(--line);border-radius:99px;width:34px;height:34px;font-size:1.2rem;cursor:pointer;color:var(--navy)}
+.merch-teaser{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow)}
+.merch-teaser img{width:100%;border-radius:var(--radius-sm);display:block;aspect-ratio:4/3;object-fit:cover}
+.merch-teaser h2{font-size:clamp(1.4rem,3vw,1.9rem);margin:8px 0 10px}
+.merch-teaser p{color:var(--muted);margin-bottom:16px}
+@media (max-width:980px){.merch-layout{grid-template-columns:1fr}.kosik-box{position:static}}
+@media (max-width:620px){.prod-grid{grid-template-columns:1fr}.merch-teaser{grid-template-columns:1fr;padding:20px}}
